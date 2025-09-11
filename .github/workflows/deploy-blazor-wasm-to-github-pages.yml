@@ -23,9 +23,9 @@ jobs:
       - name: Install wasm-tools
         run: dotnet workload install wasm-tools
 
-      # publishes Blazor project to the prerender/output folder
-      - name: Publish .NET Core Project
-        run: dotnet publish src/EventInvitations.Blazor/EventInvitations.Blazor.csproj -c Release -o prerender/output --nologo
+      # publish Blazor WebAssembly project to the output folder (no prerender)
+      - name: Publish .NET Project (Blazor WASM)
+        run: dotnet publish src/EventInvitations.Blazor/EventInvitations.Blazor.csproj -c Release -o output --nologo
 
       # Setup latest Chrome for prerendering to avoid old Puppeteer Chromium
       # - name: Setup Chrome
@@ -48,7 +48,7 @@ jobs:
 
       # change base tag in all html files to include subfolder
       - name: Change base tag
-        working-directory: prerender/output/wwwroot
+        working-directory: output/wwwroot
         run: |
           find . -name "*.html" | while read htmlFile; do
               sed -i 's/<base href="\/"/<base href="\/${{ env.REPO_NAME }}\/"/g' $htmlFile
@@ -58,11 +58,11 @@ jobs:
 
       # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
       - name: Add .nojekyll file
-        run: touch prerender/output/wwwroot/.nojekyll
+        run: touch output/wwwroot/.nojekyll
 
       - name: Commit wwwroot to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: deployment-branch
-          folder: prerender/output/wwwroot
+          folder: output/wwwroot
