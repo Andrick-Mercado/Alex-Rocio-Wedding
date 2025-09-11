@@ -1,0 +1,53 @@
+﻿@using PersonalPortfolio.Library.Domain
+@using PersonalPortfolio.Library.Domain.Mappers
+@using PersonalPortfolio.Library.Infrastructure.Extensions
+
+<PageTitle>@ClientRouteName.FirstCharToUpper()</PageTitle>
+
+@if (_hasLoaded is false)
+{
+    <MudAlert Severity="Severity.Info" Variant="Variant.Filled" Class="m-4">
+        <MudAlert>Page is loading...</MudAlert>
+    </MudAlert>
+}
+else if (_currentPage?.PageFormat is CardType.Experience or CardType.Project or CardType.Education)
+{
+    <MudItem xs="12" md="12" Class="d-flex flex-wrap mt-4">
+        @foreach (var project in _currentPage.Cards)
+        {
+            <MudItem Class="d-flex flex-wrap mr-4 mb-8">
+                <MudCard Square="true" Style="width:400px">
+                    <MudCardContent>
+                        <MudText Typo="Typo.h5">@project.Title</MudText>
+                        <MudText Typo="Typo.body2">@project.Body</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Text" Color="Color.Primary" Href="@project.LearnMoreUrl" Target="_blank">Learn More</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        }
+    </MudItem>
+}
+else if (_currentPage?.PageFormat is CardType.Skill)
+{
+    @foreach (var skillCards in GetCardsGroupedByCardName())
+    {
+        <MudDivider Class="mb-4"/>
+        <MudText Class="d-flex justify-center" Typo="Typo.h3" GutterBottom="true">@skillCards.Key</MudText>
+        <MudItem xs="12" md="12" Class="d-flex justify-center flex-wrap mt-4">
+            @foreach (var skill in skillCards)
+            {
+                <MudItem Class="d-flex flex-wrap mr-4 mb-8">
+                    <MudCard Square="true" Style="width:400px">
+                        <MudIcon Icon="@IconMapper.GetIcon(skill.Icon)" Size="Size.Large"/>
+                        <MudCardContent>
+                            <MudText Typo="Typo.h5">@skill.Title</MudText>
+                            <MudText Typo="Typo.body2">@skill.Body</MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+            }
+        </MudItem>
+    }
+}

@@ -1,0 +1,67 @@
+
+@using PersonalPortfolio.Library.Domain
+@inject PersonalPortfolio.Library.Infrastructure.IWebsiteRepo WebsiteRepo
+@inject IJSRuntime JS
+
+<div class="hero" style="background-image:url('@(_wedding?.HeroBackgroundImage ?? "images/otherImage_01.png")');">
+    <canvas id="snow-canvas"></canvas>
+    <div class="hero-content">
+        <h1 class="couple">@(_wedding?.CoupleNames ?? "Roberto & Lizeth")</h1>
+        <p class="date">@(_wedding?.DateText ?? "04 . Mayo . 2025")</p>
+        <p class="subtitle">@(_wedding?.Subtitle ?? "Nuestra Boda")</p>
+    </div>
+    <div class="scroll-indicator">@(_wedding?.ScrollIndicatorText ?? "Desliza para ver más")</div>
+</div>
+
+@foreach (var sec in _wedding?.Sections ?? new List<WeddingSection>())
+{
+    <section class="@(sec.AltStyle ? "fade-section alt" : "fade-section")">
+        <div class="@(sec.Reverse ? "section-inner reverse" : "section-inner")">
+            @if (sec.Reverse)
+            {
+                <div class="section-text">
+                    <h2>@sec.Title</h2>
+                    @foreach (var p in sec.Paragraphs ?? new List<string>())
+                    {
+                        <p>@p</p>
+                    }
+                </div>
+                <img src="@sec.Image" alt="@sec.ImageAlt" class="section-image" />
+            }
+            else
+            {
+                <img src="@sec.Image" alt="@sec.ImageAlt" class="section-image" />
+                <div class="section-text">
+                    <h2>@sec.Title</h2>
+                    @foreach (var p in sec.Paragraphs ?? new List<string>())
+                    {
+                        <p>@p</p>
+                    }
+                </div>
+            }
+        </div>
+    </section>
+}
+
+<footer class="footer">
+    <p>@(_wedding?.FooterText ?? "Con cariño, R & L • 2025")</p>
+</footer>
+
+@code {
+    private PersonalPortfolio.Library.Domain.WeddingInvitation? _wedding;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var siteData = await WebsiteRepo.GetWebsiteData();
+        _wedding = siteData.WeddingInvitation;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("weddingSnow.init");
+            await JS.InvokeVoidAsync("scrollFade.init");
+        }
+    }
+}

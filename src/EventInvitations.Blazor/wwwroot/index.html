@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>PersonalPortfolio</title>
+    <base href="/"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet"/>
+    <link href="css/wedding.css" rel="stylesheet"/>
+    <style>
+        /* Minimal splash styling. Lives only until Blazor replaces #app */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0b0b0b; /* fallback background, adapt as needed */
+            z-index: 9999;
+        }
+        #splash-screen .logo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+        #splash-screen .brand-text {
+            margin-top: 18px;
+            color: #ffffffcc;
+            font-family: Roboto, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-align: center;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.95; }
+            50% { transform: scale(1.06); opacity: 1; }
+        }
+    </style>
+    <script>
+        // Seamless scroll position persistence across refreshes
+        (function(){
+            try {
+                if ('scrollRestoration' in history) {
+                    history.scrollRestoration = 'manual';
+                }
+                const storage = window.sessionStorage;
+                const key = function(){ return 'scroll:' + location.pathname + location.search; };
+
+                function save(){
+                    try { storage.setItem(key(), String(Math.round(window.scrollY || window.pageYOffset || 0))); } catch(e) {}
+                }
+
+                function restore(){
+                    const raw = storage.getItem(key());
+                    if(!raw) return;
+                    const target = parseInt(raw, 10);
+                    if(isNaN(target)) return;
+
+                    let attempts = 0;
+                    const maxAttempts = 120; // ~2s at 60fps
+                    const snap = function(){
+                        // If content isn't tall enough yet, keep trying
+                        const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+                        const near = Math.abs((window.scrollY||0) - target) < 1;
+                        if (!near) {
+                            window.scrollTo(0, target);
+                        }
+                        if (docHeight < target + 1 && attempts < maxAttempts) {
+                            attempts++;
+                            requestAnimationFrame(snap);
+                        }
+                    };
+                    // Try ASAP and then keep nudging until content settles
+                    requestAnimationFrame(snap);
+                }
+
+                // Save early and often
+                window.addEventListener('beforeunload', save, { passive: true });
+                document.addEventListener('visibilitychange', function(){ if(document.hidden) save(); }, { passive: true });
+
+                // Restore as early as possible
+                window.addEventListener('DOMContentLoaded', restore, { once: true, passive: true });
+                window.addEventListener('pageshow', function(e){ if (e.persisted) restore(); }, { passive: true });
+            } catch(err) {
+                // no-op; never block app
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="splash-screen">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <img class="logo" src="images/headshot_01.png" alt="Loading" />
+                <div class="brand-text">Loading…</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script src="js/snow.js"></script>
+    <script src="js/scrollfade.js"></script>
+</body>
+
+</html>
