@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en" style="--blazor-load-percentage:100%;--blazor-load-percentage-text:&quot"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><base href="/Alex-Rocio-Wedding/"><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet"><link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet"><link href="css/wedding.css" rel="stylesheet"><style>#splash-screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#0b0b0b;z-index:9999}#splash-screen .logo{width:160px;height:160px;border-radius:50%;object-fit:cover;box-shadow:0 10px 30px rgba(0,0,0,.35);animation:pulse 1.6s ease-in-out infinite}#splash-screen .brand-text{margin-top:18px;color:#ffffffcc;font-family:Roboto,system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-weight:500;letter-spacing:.04em;text-align:center}@keyframes pulse{0%,100%{transform:scale(1);opacity:.95}50%{transform:scale(1.06);opacity:1}}</style><script>// Seamless scroll position persistence across refreshes
+        (function(){
+            try {
+                if ('scrollRestoration' in history) {
+                    history.scrollRestoration = 'manual';
+                }
+                const storage = window.sessionStorage;
+                const key = function(){ return 'scroll:' + location.pathname + location.search; };
+
+                function save(){
+                    try { storage.setItem(key(), String(Math.round(window.scrollY || window.pageYOffset || 0))); } catch(e) {}
+                }
+
+                function restore(){
+                    const raw = storage.getItem(key());
+                    if(!raw) return;
+                    const target = parseInt(raw, 10);
+                    if(isNaN(target)) return;
+
+                    let attempts = 0;
+                    const maxAttempts = 120; // ~2s at 60fps
+                    const snap = function(){
+                        // If content isn't tall enough yet, keep trying
+                        const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+                        const near = Math.abs((window.scrollY||0) - target) < 1;
+                        if (!near) {
+                            window.scrollTo(0, target);
+                        }
+                        if (docHeight < target + 1 && attempts < maxAttempts) {
+                            attempts++;
+                            requestAnimationFrame(snap);
+                        }
+                    };
+                    // Try ASAP and then keep nudging until content settles
+                    requestAnimationFrame(snap);
+                }
+
+                // Save early and often
+                window.addEventListener('beforeunload', save, { passive: true });
+                document.addEventListener('visibilitychange', function(){ if(document.hidden) save(); }, { passive: true });
+
+                // Restore as early as possible
+                window.addEventListener('DOMContentLoaded', restore, { once: true, passive: true });
+                window.addEventListener('pageshow', function(e){ if (e.persisted) restore(); }, { passive: true });
+            } catch(err) {
+                // no-op; never block app
+            }
+        })();</script><!--!--><!--!--><!--!--><title>PersonalPortfolio</title><!--!--><!--!--><!--!--></head><body><div id="app"><!--!--><!--!--><!--!--><!--!--><!--!--><!--!--><div class="hero" style="background-image:url(images/otherImage_01.png)"><!--!--><canvas id="snow-canvas" width="480" height="850"></canvas><div class="hero-content"><h1 class="couple">Roberto &amp; Lizeth</h1><!--!--><p class="date">04 . Mayo . 2025</p><!--!--><p class="subtitle">Nuestra Boda</p></div><!--!--><div class="scroll-indicator">Desliza para ver más</div></div><section class="fade-section"><div class="section-inner"><img src="images/headshot_01.png" alt="Couple 1" class="section-image"><!--!--><div class="section-text"><h2>Historia</h2><p>Comenzó con una amistad y creció hasta convertirse en una historia de amor.</p><p>Nos emociona compartir este nuevo capítulo con ustedes.</p></div></div></section><section class="fade-section alt"><div class="section-inner reverse"><div class="section-text"><h2>Eventos</h2><p>Ceremonia y recepción el 04 de mayo de 2025.</p><p>El código de vestimenta es formal. Lleguen con tiempo para celebrar con nosotros.</p></div><!--!--> <img src="images/otherImage_01.png" alt="Event" class="section-image"></div></section><section class="fade-section"><div class="section-inner"><img src="images/otherImage_01.png" alt="Gallery" class="section-image"><!--!--><div class="section-text"><h2>Detalles</h2><p>Sigan esta página para actualizaciones de ubicación, horarios y mesa de regalos.</p></div></div></section><footer class="footer"><p>Con cariño, R &amp; L • 2025</p></footer></div><div id="blazor-error-ui">An unhandled error has occurred. <a href="" class="reload">Reload</a> <span class="dismiss">🗙</span></div><script src="_framework/blazor.webassembly.js"></script><script src="_content/MudBlazor/MudBlazor.min.js"></script><script src="js/snow.js"></script><script src="js/scrollfade.js"></script></body></html>
