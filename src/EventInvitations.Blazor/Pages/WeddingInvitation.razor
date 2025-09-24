@@ -1,16 +1,16 @@
 
 @using PersonalPortfolio.Library.Domain
-@inject PersonalPortfolio.Library.Infrastructure.IWebsiteRepo WebsiteRepo
+@inject Library.Infrastructure.IWebsiteRepo WebsiteRepo
 @inject IJSRuntime JS
 
-<div class="hero" style="background-image:url('@(_wedding?.HeroBackgroundImage ?? "images/otherImage_01.png")');">
+<div class="hero" style="background-image:url('@(_wedding?.HeroBackgroundImage)');">
     <canvas id="snow-canvas"></canvas>
     <div class="hero-content">
-        <h1 class="couple">@(_wedding?.CoupleNames ?? "Roberto & Lizeth")</h1>
-        <p class="date">@(_wedding?.DateText ?? "04 . Mayo . 2025")</p>
-        <p class="subtitle">@(_wedding?.Subtitle ?? "Nuestra Boda")</p>
+        <h1 class="couple">@(_wedding?.CoupleNames)</h1>
+        <p class="date">@(_wedding?.DateText)</p>
+        <p class="subtitle">@(_wedding?.Subtitle)</p>
     </div>
-    <div class="scroll-indicator">@(_wedding?.ScrollIndicatorText ?? "Desliza para ver más")</div>
+    <div class="scroll-indicator">@(_wedding?.ScrollIndicatorText)</div>
 </div>
 
 @foreach (var sec in _wedding?.Sections ?? new List<WeddingSection>())
@@ -44,11 +44,11 @@
 }
 
 <footer class="footer">
-    <p>@(_wedding?.FooterText ?? "Con cariño, R & L • 2025")</p>
+    <p>@(_wedding?.FooterText)</p>
 </footer>
 
 @code {
-    private PersonalPortfolio.Library.Domain.WeddingInvitation? _wedding;
+    private PersonalPortfolio.Library.Domain.WeddingInvitation _wedding;
 
     protected override async Task OnInitializedAsync()
     {

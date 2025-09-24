@@ -40,50 +40,7 @@ public class SocialMediaLinks
 
 public class WebsiteData
 {
-    public MainPage MainPage { get; set; }
-    public List<OtherPages> OtherPages { get; set; }
     public WeddingInvitation WeddingInvitation { get; set; }
-}
-
-public class MainPage
-{
-    public string Name { get; set; }
-    public string Title { get; set; }
-    public string ImageRoute { get; set; }
-
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public Icon Icon { get; set; }
-
-    public List<string> Paragraphs { get; set; }
-}
-
-public class OtherPages
-{
-    public int SortOrder { get; set; }
-    public string Title { get; set; }
-    public string Endpoint { get; set; }
-
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public CardType PageFormat { get; set; }
-
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public Icon Icon { get; set; }
-
-    public List<Card> Cards { get; set; }
-}
-
-public class Card
-{
-    public string Name { get; set; }
-    public string Title { get; set; }
-    public string Body { get; set; }
-
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public Icon Icon { get; set; }
-
-    public string ImageUrl { get; set; }
-    public string EmbedUrl { get; set; }
-    public string LearnMoreUrl { get; set; }
 }
 
 public class WeddingInvitation
