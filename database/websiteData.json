@@ -19,7 +19,7 @@
   "websiteData": {
     "weddingInvitation": {
       "heroBackgroundImage": "images/otherImage_01.png",
-      "coupleNames": "Roberto & Lizeth",
+      "coupleNames": "Alex & Rocio",
       "dateText": "04 . Mayo . 2025",
       "subtitle": "Nuestra Boda",
       "scrollIndicatorText": "Desliza para ver más",
@@ -57,119 +57,7 @@
           ]
         }
       ],
-      "footerText": "Con cariño, R & L • 2025"
-    },
-    "mainPage": {
-      "name": "My Portfolio",
-      "title": "About Me",
-      "imageRoute": "images/headshot_01.png",
-      "icon": "AccountCircle",
-      "paragraphs": [
-        "Ever since I was a kid, I’ve been fascinated by how things work especially computers. My curiosity led me to programming, where I found a way to bring hardware to life through software. Inspired by the inner workings of technology, I pursued a degree in Computer Science to better understand and contribute to this rapidly evolving field.",
-        "As a first-generation college student, my path hasn’t been easy. I used to wake up at 4 AM every day to cross the border from Mexico to the U.S. for school. That determination has shaped who I am today—a driven learner with a deep appreciation for every opportunity to grow.",
-        "My passion for technology started with video games. Getting my first console sparked a lifelong interest in game development. Since then, I’ve gained hands-on experience building games in Unity and Unreal, and I’m proficient in several programming languages.",
-        "At my core, I’m a curious and persistent learner. If something grabs my interest, I’ll dig deep until I understand it. Whether it's CPUs, code, or game engines, I’m always seeking knowledge and striving to improve."
-      ]
-    },
-    "otherPages": [
-      {
-        "sortOrder": 0,
-        "title": "Experience",
-        "endpoint": "experience",
-        "pageFormat": "Experience",
-        "icon": "Lightbulb",
-        "cards": [
-          {
-            "name": "A",
-            "title": "B",
-            "body": "C",
-            "icon": "Lightbulb",
-            "imageUrl": "",
-            "embedUrl": "",
-            "LearnMoreUrl": "https://www.google.com"
-          }
-        ]
-      },
-      {
-        "sortOrder": 1,
-        "title": "Skills",
-        "endpoint": "skills",
-        "pageFormat": "Skill",
-        "icon": "AutoGraph",
-        "cards": [
-          {
-            "name": "My Experience & Education",
-            "title": "Proficient with Unity",
-            "body": "I started my Unity journey at the beginning of 2020, and since then I have been programming and designing architectures for games.",
-            "icon": "Lightbulb",
-            "imageUrl": "",
-            "embedUrl": "",
-            "LearnMoreUrl": ""
-          },
-          {
-            "name": "My Experience & Education",
-            "title": "Proficient in ASP.NET Core",
-            "body": "I started my .NET Core journey at the start of 2023, making websites with MVC and scaffolding.",
-            "icon": "Lightbulb",
-            "imageUrl": "",
-            "embedUrl": "",
-            "LearnMoreUrl": ""
-          },
-          {
-            "name": "My Experience & Education",
-            "title": "Experienced in Blazor",
-            "body": "I started using Blazor in a job application, after that I started creating personal projects using server and client side Blazor.",
-            "icon": "Lightbulb",
-            "imageUrl": "",
-            "embedUrl": "",
-            "LearnMoreUrl": ""
-          },
-          {
-            "name": "My Experience & Education",
-            "title": "Experienced in Java",
-            "body": "I started using Java in my last year of high school (2019) for all sorts of projects.",
-            "icon": "Lightbulb",
-            "imageUrl": "",
-            "embedUrl": "",
-            "LearnMoreUrl": ""
-          },
-          {
-            "name": "My Experience & Education",
-            "title": "Team Work",
-            "body": "I've administered and been a part of many teams, I thrive my self on my work ethic and on helping others understand all while being open to learning from them.",
-            "icon": "Lightbulb",
-            "imageUrl": "",
-            "embedUrl": "",
-            "LearnMoreUrl": ""
-          },
-          {
-            "name": "My Experience & Education",
-            "title": "Experienced in Git",
-            "body": "Experienced Version Control user, using Git with GUI’s such as Git Bash, Github, and Gitlab, I've administered the majority of my projects with Git to ease productivity.",
-            "icon": "Lightbulb",
-            "imageUrl": "",
-            "embedUrl": "",
-            "LearnMoreUrl": ""
-          }
-        ]
-      },
-      {
-        "sortOrder": 3,
-        "title": "Resume",
-        "endpoint": "https://docs.google.com/document/d/1NzIuVymJB1AxnmTCS_Wprf9u6-O_Qa-7vnFpc8n5guA/edit?usp=sharing",
-        "pageFormat": "ExternalLink",
-        "icon": "InsertDriveFile",
-        "cards": [
-          {
-            "name": "123",
-            "title": "456",
-            "body": "1",
-            "icon": "Lightbulb",
-            "imageUrl": "",
-            "embedUrl": "https://docs.google.com/document/d/1NzIuVymJB1AxnmTCS_Wprf9u6-O_Qa-7vnFpc8n5guA/edit?usp=sharing"
-          }
-        ]
-      }
-    ]
+      "footerText": "Con cariño, A & R • 2025"
+    }
   }
 }
