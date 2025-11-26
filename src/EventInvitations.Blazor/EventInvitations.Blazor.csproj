@@ -6,6 +6,7 @@
         <HotReloadEnabled>true</HotReloadEnabled>
         <WasmEnableSIMD>false</WasmEnableSIMD>
         <WasmEnableExceptionHandling>false</WasmEnableExceptionHandling>
+        <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
         <RootNamespace>PersonalPortfolio.Blazor</RootNamespace>
     </PropertyGroup>
 
