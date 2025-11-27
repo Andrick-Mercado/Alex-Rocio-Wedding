@@ -22,6 +22,16 @@ public static class UriMapper
         return $"https://github.com/{username}";
     }
 
+    public static string GetFacebookUri(string username)
+    {
+        return $"https://www.facebook.com/{username}";
+    }
+
+    public static string GetAmazonWishlistUri(string wishListId)
+    {
+        return $"https://www.amazon.com/wishlist/{wishListId}";
+    }
+
     public static string GetExternalLinked(string url)
     {
         return url;

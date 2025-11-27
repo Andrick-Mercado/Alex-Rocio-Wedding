@@ -10,7 +10,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "BlazorWasmAppV2": {
+    "BlazorWasmAppWithDebug": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

@@ -13,21 +13,23 @@
       "linkedIn": "andrick-mercado",
       "mail": "andrickmercado17@gmail.com",
       "twitter": null,
-      "github": "andrick-mercado"
+      "github": "andrick-mercado",
+      "facebook": "andrick",
+      "amazonWishList":"123123"
     }
   },
   "websiteData": {
     "weddingInvitation": {
-      "heroBackgroundImage": "images/otherImage_01.png",
-      "coupleNames": "Alex & Rocio",
-      "dateText": "04 . Mayo . 2025",
+      "heroBackgroundImage": "images/IMG_6648.JPEG",
+      "coupleNames": "Alejandro y Rocio",
+      "dateText": "18 . Abril . 2026",
       "subtitle": "Nuestra Boda",
       "scrollIndicatorText": "Desliza para ver más",
       "sections": [
         {
           "altStyle": false,
           "reverse": false,
-          "image": "images/headshot_01.png",
+          "image": "images/IMG_1511.JPEG",
           "imageAlt": "Couple 1",
           "title": "Historia",
           "paragraphs": [
@@ -38,26 +40,29 @@
         {
           "altStyle": true,
           "reverse": true,
-          "image": "images/otherImage_01.png",
+          "image": "images/IMG_4425_V2.PNG",
           "imageAlt": "Event",
           "title": "Eventos",
           "paragraphs": [
-            "Ceremonia y recepción el 04 de mayo de 2025.",
-            "El código de vestimenta es formal. Lleguen con tiempo para celebrar con nosotros."
+            "Ceremonia y recepción de 5:00 PM a 6:00 PM",
+            "Fiesta de 6:00 PM a 12 AM",
+            "Comida de 7:00 PM a 8:00 PM"
           ]
         },
         {
           "altStyle": false,
           "reverse": false,
-          "image": "images/otherImage_01.png",
+          "image": "images/IMG_3672.jpg",
           "imageAlt": "Gallery",
           "title": "Detalles",
           "paragraphs": [
-            "Sigan esta página para actualizaciones de ubicación, horarios y mesa de regalos."
+            "Sigan esta página para actualizaciones de ubicación, horarios y mesa de regalos.",
+            "Ubicaccion: Las Brisas Boulevard Tangolunda LTI, Bahia Tangolunda, 70989 Bahias de Huatulco, Oaxaca.",
+            "El código de vestimenta es formal. Lleguen con tiempo para celebrar con nosotros."
           ]
         }
       ],
-      "footerText": "Con cariño, A & R • 2025"
+      "footerText": "Con cariño, A & R • 2026"
     }
   }
 }

@@ -1,5 +1,6 @@
 
 @using PersonalPortfolio.Library.Domain
+@using PersonalPortfolio.Library.Domain.Mappers
 @inject Library.Infrastructure.IWebsiteRepo WebsiteRepo
 @inject IJSRuntime JS
 
@@ -47,9 +48,19 @@
 
 <MudPaper Class="footer" Elevation="0">
     <MudText Align="Align.Center">@(_wedding?.FooterText)</MudText>
+
+    @if (string.IsNullOrEmpty(_personalInformation?.SocialMediaLinks.Facebook) is false)
+    {
+        <MudIconButton Icon="@Icons.Custom.Brands.Facebook" Color="Color.Inherit" Href="@UriMapper.GetFacebookUri(_personalInformation.SocialMediaLinks.Facebook)"/>
+    }
+    @if (string.IsNullOrEmpty(_personalInformation?.SocialMediaLinks.AmazonWishList) is false)
+    {
+        <MudIconButton Icon="@Icons.Material.Filled.Checklist" Color="Color.Inherit" Href="@UriMapper.GetAmazonWishlistUri(_personalInformation.SocialMediaLinks.AmazonWishList)"/>
+    }
 </MudPaper>
 
 @code {
+    private PersonalInformation _personalInformation;
     private PersonalPortfolio.Library.Domain.WeddingInvitation _wedding;
     private string HeroStyle => string.IsNullOrWhiteSpace(_wedding?.HeroBackgroundImage) ? string.Empty : $"background-image:url('{_wedding.HeroBackgroundImage}');";
 
@@ -57,6 +68,9 @@
     {
         var siteData = await WebsiteRepo.GetWebsiteData();
         _wedding = siteData.WeddingInvitation;
+
+        var personalData = await WebsiteRepo.GetPersonalInformation();
+        _personalInformation = personalData;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
