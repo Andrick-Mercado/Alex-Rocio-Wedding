@@ -238,3 +238,61 @@ html, body {
   opacity: .85;
   color: #e0f2ee;
 }
+
+/* Countdown section (cards over photo style) */
+.countdown-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.countdown-title {
+  font-family: "Great Vibes", "Times New Roman", serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: #ffffff;
+  text-shadow: 0 2px 16px rgba(0,0,0,.35);
+  margin-bottom: .25rem;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: clamp(.75rem, 2vw, 1.25rem);
+  width: 100%;
+  justify-items: center;
+}
+
+.countdown-box {
+  width: min(100%, 260px);
+  background: rgba(255,255,255,.95);
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.16);
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(.5rem, 2vw, 1rem);
+  text-align: center;
+}
+
+.countdown-number {
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #4a7f75; /* teal like screenshot */
+  font-size: clamp(1.75rem, 5vw, 3rem);
+}
+
+.countdown-label {
+  margin-top: .35rem;
+  font-size: .875rem;
+  letter-spacing: .25rem;
+  color: #6c7a76;
+}
+
+.countdown-footer {
+  margin-top: .25rem;
+  color: #2f3b37;
+}
+
+@media (max-width: 720px) {
+  .countdown-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+}

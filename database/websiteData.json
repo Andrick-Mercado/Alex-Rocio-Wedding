@@ -27,6 +27,14 @@
       "scrollIndicatorText": "Desliza para ver más",
       "sections": [
         {
+          "type": "Countdown",
+          "altStyle": false,
+          "reverse": false,
+          "title": "La aventura",
+          "countdownTarget": "2026-04-18T17:00:00-06:00",
+          "footerText": "Nosotros estamos esperando ..."
+        },
+        {
           "altStyle": false,
           "reverse": false,
           "image": "images/IMG_1511.JPEG",
