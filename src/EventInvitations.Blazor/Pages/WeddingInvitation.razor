@@ -9,9 +9,15 @@
         <canvas id="snow-canvas"></canvas>
         <MudContainer Class="hero-content" MaxWidth="MaxWidth.False">
             <MudText Typo="Typo.h1" Class="couple">@(_wedding?.CoupleNames)</MudText>
-            <MudText Typo="Typo.subtitle1" Class="date">@(_wedding?.DateText)</MudText>
             <MudText Typo="Typo.subtitle2" Class="subtitle">@(_wedding?.Subtitle)</MudText>
         </MudContainer>
+        <!-- Save the date half-circle badge at the bottom center -->
+        <div class="save-the-date">
+            <div class="save-the-date__circle">
+                <div class="save-the-date__title">Reserva la fecha</div>
+                <div class="save-the-date__date date">@(_wedding?.DateText)</div>
+            </div>
+        </div>
         <MudText Class="scroll-indicator">@(_wedding?.ScrollIndicatorText)</MudText>
     </div>
 </MudPaper>
