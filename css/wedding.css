@@ -2,9 +2,10 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: "Cormorant Garamond", "Georgia", serif;
-  color: #fff;
-  background: #000;
+  /* Elegant serif for headings + modern sans for body */
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #2f3b37; /* deep eucalyptus */
+  background: #f7faf9; /* soft paper */
 }
 
 /* Hero */
@@ -23,7 +24,8 @@ html, body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.35);
+  /* Remove whitish overlay – show original image colors */
+  background: rgba(255,255,255,0);
 }
 
 #snow-canvas {
@@ -40,19 +42,24 @@ html, body {
 }
 
 .couple {
-  font-size: clamp(2.2rem, 6vw, 6rem);
-  letter-spacing: .1rem;
+  font-family: "Great Vibes", "Times New Roman", serif; /* romantic script */
+  font-size: clamp(2.6rem, 7.2vw, 6.5rem);
+  letter-spacing: .06rem;
   margin: 0 0 .25rem 0;
+  color: #ffffff;
+  text-shadow: 0 2px 16px rgba(47,59,55,.35);
 }
 .date {
-  font-size: clamp(1.2rem, 3vw, 2.2rem);
+  font-size: clamp(1.1rem, 3vw, 2rem);
   margin: 0 0 .5rem 0;
+  color: #f3faf8;
 }
 .subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.6rem);
-  letter-spacing: .3rem;
+  font-size: clamp(0.95rem, 2.2vw, 1.4rem);
+  letter-spacing: .35rem;
   text-transform: uppercase;
-  opacity: .9;
+  opacity: .95;
+  color: #e9f6f2;
 }
 
 .scroll-indicator {
@@ -62,16 +69,62 @@ html, body {
   transform: translateX(-50%);
   z-index: 2;
   font-size: .95rem;
-  opacity: .9;
+  opacity: .85;
+  color: #e0f2ee;
+}
+
+/* Save-the-date half circle at bottom center */
+.save-the-date {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Smaller circle so hero text remains readable */
+  width: min(64vw, 420px);
+  height: min(64vw, 420px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.save-the-date__circle {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 50%;
+  background: rgba(120,183,173,.85);
+  backdrop-filter: blur(2px);
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  box-shadow: 0 -10px 30px rgba(0,0,0,.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1.25rem;
+}
+
+.save-the-date__title {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: clamp(1rem, 3.2vw, 1.5rem);
+  color: #e9f6f2;
+  letter-spacing: .08rem;
+  margin-bottom: .25rem;
+}
+
+.save-the-date__date {
+  font-weight: 600;
+  color: #ffffff;
 }
 
 /* Sections */
 .fade-section {
   position: relative;
   padding: 4rem 1rem;
-  background: #0e0e0e;
+  background: #ffffff;
 }
-.fade-section.alt { background:#121212; }
+.fade-section.alt { background:#f3f8f6; }
 
 .section-inner {
   max-width: 1100px;
@@ -87,7 +140,7 @@ html, body {
 .section-image {
   width: 100%;
   border-radius: 12px;
-  box-shadow: 0 10px 35px rgba(0,0,0,.45);
+  box-shadow: 0 12px 30px rgba(44, 62, 58, .18);
   opacity: 0;
   transform: translateY(30px);
   transition: opacity .8s ease, transform .8s ease;
@@ -98,8 +151,8 @@ html, body {
   transform: translateY(20px);
   transition: opacity .8s ease .1s, transform .8s ease .1s;
 }
-.section-text h2 { margin: 0 0 .5rem 0; font-size: 2rem; }
-.section-text p { margin: 0; line-height: 1.7; color: #e8e8e8; }
+.section-text h2 { margin: 0 0 .5rem 0; font-size: 2rem; font-family: "Cormorant Garamond", "Georgia", serif; color:#2f3b37; }
+.section-text p { margin: 0; line-height: 1.8; color: #3d4a46; }
 
 .fade-section.show .section-image,
 .fade-section.show .section-text { opacity: 1; transform: none; }
@@ -108,6 +161,25 @@ html, body {
 .footer {
   text-align: center;
   padding: 3rem 1rem 4rem;
-  background: #0b0b0b;
-  color: #ddd;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f7f5 100%);
+  color: #2f3b37;
 }
+
+/* Accent color utilities matching seafoam/teal mood */
+:root {
+  --accent: #78b7ad; /* seafoam */
+  --accent-dark: #5aa197; /* darker */
+}
+
+.subtitle,
+.date {
+  text-shadow: 0 1px 8px rgba(90,161,151,.32);
+}
+
+/* Buttons/links from MudBlazor inherit accent */
+.mud-button, .mud-link, .mud-icon-button {
+  color: var(--accent-dark);
+}
+
+.mud-primary-text { color: var(--accent) !important; }
+.mud-primary { background-color: var(--accent) !important; }
