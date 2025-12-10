@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Wedding Invitation • A & R</title>
     <base href="/Alex-Rocio-Wedding/"/>
-    <link href="_framework/dotnet.4gnljil553.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-9HT62X2pTjgYtNP/KDSS+AE4+lL+J8QywApcHqWEG2U=" />
+    <link href="_framework/dotnet.q5wfj53p55.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-jufxFvBhvTd1eR4N89aRfxwqo70guwtho1UjGTnIq8g=" />
     <!-- Theme fonts: Romantic script + modern sans -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet"/>
@@ -15,138 +15,24 @@
     <script type="importmap">{
   "imports": {
     "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.66stpp682q.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.4gnljil553.js",
     "./_framework/dotnet.native.js": "./_framework/dotnet.native.xxlposev6s.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.q5wfj53p55.js",
     "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.0j6ezsi0n0.js"
   },
   "scopes": {},
   "integrity": {
     "./_framework/blazor.webassembly.66stpp682q.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
     "./_framework/blazor.webassembly.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
-    "./_framework/dotnet.4gnljil553.js": "sha256-9HT62X2pTjgYtNP/KDSS+AE4+lL+J8QywApcHqWEG2U=",
-    "./_framework/dotnet.js": "sha256-9HT62X2pTjgYtNP/KDSS+AE4+lL+J8QywApcHqWEG2U=",
+    "./_framework/dotnet.js": "sha256-jufxFvBhvTd1eR4N89aRfxwqo70guwtho1UjGTnIq8g=",
     "./_framework/dotnet.native.js": "sha256-qxyqCIMB7Q2j3ij6xp5/qDyp3F7CZeQg4eWpzzAKhps=",
     "./_framework/dotnet.native.xxlposev6s.js": "sha256-qxyqCIMB7Q2j3ij6xp5/qDyp3F7CZeQg4eWpzzAKhps=",
+    "./_framework/dotnet.q5wfj53p55.js": "sha256-jufxFvBhvTd1eR4N89aRfxwqo70guwtho1UjGTnIq8g=",
     "./_framework/dotnet.runtime.0j6ezsi0n0.js": "sha256-jCsbbdXoVd1zzGc0fQT2sz4mKuv0ANdurPVGo5Sc2jg=",
     "./_framework/dotnet.runtime.js": "sha256-jCsbbdXoVd1zzGc0fQT2sz4mKuv0ANdurPVGo5Sc2jg="
   }
 }</script>
-    <style>
-        /* Minimal splash styling. Lives only until Blazor replaces #app */
-        #splash-screen {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(180deg, #ffffff 0%, #f1f7f5 100%);
-            z-index: 9999;
-        }
-        #splash-screen .logo-wrap { position: relative; width: 160px; height: 160px; }
-        #splash-screen .logo {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 12px 30px rgba(44,62,58,0.18);
-            animation: pulse 1.6s ease-in-out infinite;
-            border: 6px solid rgba(120,183,173,.35);
-            display:block;
-        }
-        /* Orbiting loader: a partial ring (arc) rotating around the logo's outer circle */
-        #splash-screen .orbit {
-            position: absolute;
-            /* Sit right over the image border */
-            inset: -6px;
-            border-radius: 50%;
-            animation: spin 2.6s linear infinite;
-            /* Tweakable variables */
-            --accent: #78b7ad;   /* arc color to match theme */
-            --thickness: 6px;    /* ring thickness */
-            --arc: 70deg;        /* visible arc length */
-            /* Draw the arc */
-            background: conic-gradient(from 0deg,
-                var(--accent) 0 var(--arc),
-                transparent var(--arc) 360deg);
-            /* Keep only a thin outer band (ring) */
-            -webkit-mask: radial-gradient(farthest-side,
-                transparent calc(100% - var(--thickness)),
-                #000 calc(100% - var(--thickness)));
-            mask: radial-gradient(farthest-side,
-                transparent calc(100% - var(--thickness)),
-                #000 calc(100% - var(--thickness)));
-            /* Subtle inner glow */
-            box-shadow: 0 0 10px rgba(120,183,173,.25) inset;
-        }
-        #splash-screen .brand-text {
-            margin-top: 18px;
-            color: #2f3b37;
-            font-family: Montserrat, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-align: center;
-        }
-        #splash-screen .brand-text .script { font-family: 'Great Vibes', serif; font-weight: 400; font-size: 1.75rem; color:#5aa197; display:block; margin-bottom:.25rem; }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.95; }
-            50% { transform: scale(1.06); opacity: 1; }
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @media (prefers-reduced-motion: reduce) {
-            #splash-screen .logo { animation: none; }
-            #splash-screen .orbit { animation: none; }
-        }
-    </style>
-    <script>
-        // Seamless scroll position persistence across refreshes
-        (function(){
-            try {
-                if ('scrollRestoration' in history) {
-                    history.scrollRestoration = 'manual';
-                }
-                const storage = window.sessionStorage;
-                const key = function(){ return 'scroll:' + location.pathname + location.search; };
-
-                function save(){
-                    try { storage.setItem(key(), String(Math.round(window.scrollY || window.pageYOffset || 0))); } catch(e) {}
-                }
-
-                function restore(){
-                    const raw = storage.getItem(key());
-                    if(!raw) return;
-                    const target = parseInt(raw, 10);
-                    if(isNaN(target)) return;
-
-                    let attempts = 0;
-                    const maxAttempts = 120; // ~2s at 60fps
-                    const snap = function(){
-                        // If content isn't tall enough yet, keep trying
-                        const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-                        const near = Math.abs((window.scrollY||0) - target) < 1;
-                        if (!near) {
-                            window.scrollTo(0, target);
-                        }
-                        if (docHeight < target + 1 && attempts < maxAttempts) {
-                            attempts++;
-                            requestAnimationFrame(snap);
-                        }
-                    };
-                    // Try ASAP and then keep nudging until content settles
-                    requestAnimationFrame(snap);
-                }
-
-                // Save early and often
-                window.addEventListener('beforeunload', save, { passive: true });
-                document.addEventListener('visibilitychange', function(){ if(document.hidden) save(); }, { passive: true });
-
-                // Restore as early as possible
-                window.addEventListener('DOMContentLoaded', restore, { once: true, passive: true });
-                window.addEventListener('pageshow', function(e){ if (e.persisted) restore(); }, { passive: true });
-            } catch(err) {
-                // no-op; never block app
-            }
-        })();
-    </script>
+    <link href="css/splash.css" rel="stylesheet"/>
+    <script src="js/scrollPersist.js"></script>
 </head>
 
 <body>
@@ -157,7 +43,6 @@
                     <img class="logo" src="images/BODA FRENTE1_V2.JPG" alt="A &amp; R" />
                     <div class="orbit"></div>
                 </div>
-                <div class="brand-text"><span class="script">A & R</span></div>
             </div>
         </div>
     </div>

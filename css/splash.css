@@ -1,0 +1,64 @@
+/* Minimal splash styling. Lives only until Blazor replaces #app */
+#splash-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #ffffff 0%, #f1f7f5 100%);
+    z-index: 9999;
+}
+#splash-screen .logo-wrap { position: relative; width: 160px; height: 160px; }
+#splash-screen .logo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 12px 30px rgba(44,62,58,0.18);
+    animation: pulse 1.6s ease-in-out infinite;
+    border: 6px solid rgba(120,183,173,.35);
+    display:block;
+}
+/* Orbiting loader: a partial ring (arc) rotating around the logo's outer circle */
+#splash-screen .orbit {
+    position: absolute;
+    /* Sit right over the image border */
+    inset: -6px;
+    border-radius: 50%;
+    animation: spin 2.6s linear infinite;
+    /* Tweakable variables */
+    --accent: #78b7ad;   /* arc color to match theme */
+    --thickness: 6px;    /* ring thickness */
+    --arc: 70deg;        /* visible arc length */
+    /* Draw the arc */
+    background: conic-gradient(from 0deg,
+        var(--accent) 0 var(--arc),
+        transparent var(--arc) 360deg);
+    /* Keep only a thin outer band (ring) */
+    -webkit-mask: radial-gradient(farthest-side,
+        transparent calc(100% - var(--thickness)),
+        #000 calc(100% - var(--thickness)));
+    mask: radial-gradient(farthest-side,
+        transparent calc(100% - var(--thickness)),
+        #000 calc(100% - var(--thickness)));
+    /* Subtle inner glow */
+    box-shadow: 0 0 10px rgba(120,183,173,.25) inset;
+}
+#splash-screen .brand-text {
+    margin-top: 18px;
+    color: #2f3b37;
+    font-family: Montserrat, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: center;
+}
+#splash-screen .brand-text .script { font-family: 'Great Vibes', serif; font-weight: 400; font-size: 1.75rem; color:#5aa197; display:block; margin-bottom:.25rem; }
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.95; }
+    50% { transform: scale(1.06); opacity: 1; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+    #splash-screen .logo { animation: none; }
+    #splash-screen .orbit { animation: none; }
+}
