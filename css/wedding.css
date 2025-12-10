@@ -1,90 +1,3 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  /* Elegant serif for headings + modern sans for body */
-  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: #2f3b37; /* deep eucalyptus */
-  background: #f7faf9; /* soft paper */
-}
-
-/* Hero */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  /* Remove whitish overlay – show original image colors */
-  background: rgba(255,255,255,0);
-}
-
-#snow-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.couple {
-  font-family: "Great Vibes", "Times New Roman", serif; /* romantic script */
-  font-size: clamp(2.6rem, 7.2vw, 6.5rem);
-  letter-spacing: .06rem;
-  margin: 0 0 .25rem 0;
-  color: #ffffff;
-  text-shadow: 0 2px 16px rgba(47,59,55,.35);
-}
-.date {
-  font-size: clamp(1.1rem, 3vw, 2rem);
-  margin: 0 0 .5rem 0;
-  color: #f3faf8;
-}
-.subtitle {
-  font-size: clamp(0.95rem, 2.2vw, 1.4rem);
-  letter-spacing: .35rem;
-  text-transform: uppercase;
-  opacity: .95;
-  color: #e9f6f2;
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  font-size: .95rem;
-  opacity: .85;
-  color: #e0f2ee;
-}
-
-/* Save-the-date half circle at bottom center */
-.save-the-date {
-  position: absolute;
-  bottom: -1px;
-  left: 50%;
-  transform: translateX(-50%);
-  /* Smaller circle so hero text remains readable */
-  width: min(64vw, 420px);
-  height: min(64vw, 420px);
-  pointer-events: none;
-  z-index: 2;
-}
 
 .save-the-date__circle {
   position: absolute;
@@ -171,6 +84,9 @@ html, body {
   --accent-dark: #5aa197; /* darker */
 }
 
+/* Global scale for the save-the-date badge (1 = 100%, .75 = 75%, .5 = 50%) */
+:root { --save-date-scale: .75; }
+
 .subtitle,
 .date {
   text-shadow: 0 1px 8px rgba(90,161,151,.32);
@@ -183,3 +99,96 @@ html, body {
 
 .mud-primary-text { color: var(--accent) !important; }
 .mud-primary { background-color: var(--accent) !important; }
+.save-the-date {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  /* Scale the whole component proportionally (circle + inner text) */
+  transform: translateX(-50%) scale(var(--save-date-scale, .75));
+  transform-origin: bottom center;
+  /* Base size before scaling */
+  width: min(64vw, 420px);
+  height: min(64vw, 420px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  /* Elegant serif for headings + modern sans for body */
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #2f3b37; /* deep eucalyptus */
+  background: #f7faf9; /* soft paper */
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Dark overlay to improve text legibility over the photo */
+  background: rgba(0,0,0,.45);
+  /* Apply a subtle backdrop filter to the background image for readability */
+  backdrop-filter: brightness(0.85) saturate(0.92);
+  z-index: 0;
+}
+
+#snow-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Ensure snow renders above the dark overlay */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.couple {
+  font-family: "Great Vibes", "Times New Roman", serif; /* romantic script */
+  font-size: clamp(2.6rem, 7.2vw, 6.5rem);
+  letter-spacing: .06rem;
+  margin: 0 0 .25rem 0;
+  color: #ffffff;
+  text-shadow: 0 2px 16px rgba(47,59,55,.35);
+}
+.date {
+  font-size: clamp(1.1rem, 3vw, 2rem);
+  margin: 0 0 .5rem 0;
+  color: #f3faf8;
+}
+.subtitle {
+  font-size: clamp(0.95rem, 2.2vw, 1.4rem);
+  letter-spacing: .35rem;
+  text-transform: uppercase;
+  opacity: .95;
+  color: #e9f6f2;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: .95rem;
+  opacity: .85;
+  color: #e0f2ee;
+}
