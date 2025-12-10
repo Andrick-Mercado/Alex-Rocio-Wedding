@@ -31,7 +31,8 @@
           "reverse": false,
           "image": "images/IMG_1511.JPEG",
           "imageAlt": "Couple 1",
-          "title": "Historia",
+          "title": "El novio",
+          "footerText": " —Alejandro— ",
           "paragraphs": [
             "Comenzó con una amistad y creció hasta convertirse en una historia de amor.",
             "Nos emociona compartir este nuevo capítulo con ustedes."
@@ -40,6 +41,18 @@
         {
           "altStyle": true,
           "reverse": true,
+          "image": "images/IMG_1511.JPEG",
+          "imageAlt": "Couple 1",
+          "title": "La novia",
+          "footerText": " —Rocio— ",
+          "paragraphs": [
+            "Comenzó con una amistad y creció hasta convertirse en una historia de amor.",
+            "Nos emociona compartir este nuevo capítulo con ustedes."
+          ]
+        },
+        {
+          "altStyle": false,
+          "reverse": false,
           "image": "images/IMG_4425_V2.PNG",
           "imageAlt": "Event",
           "title": "Eventos",
