@@ -252,7 +252,7 @@ html, body {
 .countdown-title {
   font-family: "Great Vibes", "Times New Roman", serif;
   font-size: clamp(2rem, 6vw, 3.5rem);
-  color: #ffffff;
+  color: #4a7f75;
   text-shadow: 0 2px 16px rgba(0,0,0,.35);
   margin-bottom: .25rem;
 }
