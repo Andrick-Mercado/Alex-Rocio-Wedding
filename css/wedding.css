@@ -85,7 +85,7 @@
 }
 
 /* Global scale for the save-the-date badge (1 = 100%, .75 = 75%, .5 = 50%) */
-:root { --save-date-scale: .75; }
+:root { --save-date-scale: 1; }
 
 .subtitle,
 .date {
