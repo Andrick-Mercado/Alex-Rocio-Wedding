@@ -197,6 +197,17 @@
 .dress-dot.active { background: var(--accent-dark); }
 .dress-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+/* Swipe container: enable horizontal swipes without interfering with page scroll */
+.dresscode-touch {
+  touch-action: pan-y;
+  -ms-touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: grab;
+}
+.dresscode-touch:active { cursor: grabbing; }
+
 /* Reveal current slide when section is in view */
 .fade-section.show .dress-slide { opacity: 1; transform: none; }
 
