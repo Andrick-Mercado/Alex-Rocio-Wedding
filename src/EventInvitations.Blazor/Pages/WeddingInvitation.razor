@@ -60,6 +60,47 @@
             </MudContainer>
         </MudPaper>
     }
+    else if (sec.Type == WeddingSectionType.Events)
+    {
+        <MudPaper Class="@(sec.AltStyle ? "fade-section alt" : "fade-section")" Elevation="0">
+            <MudContainer Class="events-section" MaxWidth="MaxWidth.False">
+                @if (string.IsNullOrWhiteSpace(sec.Title) is false)
+                {
+                    <MudText Typo="Typo.h4" Class="events-title">@sec.Title</MudText>
+                }
+                <div class="events-list">
+                    @foreach (var ev in sec.Events ?? new List<WeddingEvent>())
+                    {
+                        <div class="event-item">
+                            @if (string.IsNullOrWhiteSpace(ev.Image) is false)
+                            {
+                                <MudImage Src="@ev.Image" Alt="@ev.ImageAlt" Class="event-image" />
+                            }
+                            <div class="event-details">
+                                <MudText Typo="Typo.h6" Class="event-title">@ev.Title</MudText>
+                                @if (string.IsNullOrWhiteSpace(ev.Address) is false)
+                                {
+                                    <MudText Typo="Typo.body2" Class="event-address">@ev.Address</MudText>
+                                }
+                                @if (string.IsNullOrWhiteSpace(ev.DateTimeText) is false)
+                                {
+                                    <MudText Typo="Typo.body2" Class="event-datetime">@ev.DateTimeText</MudText>
+                                }
+                                @if (string.IsNullOrWhiteSpace(ev.Description) is false)
+                                {
+                                    <MudText Typo="Typo.body1" Class="event-description">@ev.Description</MudText>
+                                }
+                                @if (string.IsNullOrWhiteSpace(ev.LocationUrl) is false)
+                                {
+                                    <MudLink Href="@ev.LocationUrl" Class="event-link">@(string.IsNullOrWhiteSpace(ev.LocationLinkText) ? "Ver ubicación ›" : ev.LocationLinkText)</MudLink>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </MudContainer>
+        </MudPaper>
+    }
     else
     {
         <MudPaper Class="@(sec.AltStyle ? "fade-section alt" : "fade-section")" Elevation="0">

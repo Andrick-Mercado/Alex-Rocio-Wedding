@@ -70,6 +70,20 @@ public class WeddingSection
     public WeddingSectionType Type { get; set; } = WeddingSectionType.Standard;
 
     public string CountdownTarget { get; set; }
+
+    public List<WeddingEvent> Events { get; set; }
+}
+
+public class WeddingEvent
+{
+    public string Image { get; set; }
+    public string ImageAlt { get; set; }
+    public string Title { get; set; }
+    public string Address { get; set; }
+    public string DateTimeText { get; set; }
+    public string Description { get; set; }
+    public string LocationUrl { get; set; }
+    public string LocationLinkText { get; set; }
 }
 
 #region Enums
@@ -83,7 +97,8 @@ public enum WebsiteTheme
 public enum WeddingSectionType
 {
     Standard,
-    Countdown
+    Countdown,
+    Events
 }
 
 public enum CardType
