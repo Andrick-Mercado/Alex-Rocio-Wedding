@@ -59,15 +59,31 @@
           ]
         },
         {
+          "type": "Events",
           "altStyle": false,
           "reverse": false,
-          "image": "images/IMG_4425_V2.PNG",
-          "imageAlt": "Event",
           "title": "Eventos",
-          "paragraphs": [
-            "Ceremonia y recepción de 5:00 PM a 6:00 PM",
-            "Fiesta de 6:00 PM a 12 AM",
-            "Comida de 7:00 PM a 8:00 PM"
+          "events": [
+            {
+              "image": "images/reception.jpg",
+              "imageAlt": "Recepción",
+              "title": "Recepción",
+              "address": "Huatulco, Oaxaca",
+              "dateTimeText": "18 Abr 2026, 5:00 PM – 6:00 PM",
+              "description": "Ceremonia y recepción para celebrar nuestro amor.",
+              "locationUrl": "https://maps.google.com",
+              "locationLinkText": "Ver ubicación ›"
+            },
+            {
+              "image": "images/party.jpg",
+              "imageAlt": "Fiesta",
+              "title": "Fiesta",
+              "address": "Huatulco, Oaxaca",
+              "dateTimeText": "18 Abr 2026, 6:00 PM – 12:00 AM",
+              "description": "¡Música y baile para todos nuestras personas favoritas!",
+              "locationUrl": "https://maps.google.com",
+              "locationLinkText": "Ver ubicación ›"
+            }
           ]
         },
         {
