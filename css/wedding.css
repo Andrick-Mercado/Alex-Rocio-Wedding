@@ -149,6 +149,57 @@
 /* Reveal events when section is in view */
 .fade-section.show .event-item { opacity: 1; transform: none; }
 
+/* Dress code section */
+.dresscode-section { max-width: 1200px; margin: 0 auto; }
+.dress-title {
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  color:#2f3b37;
+  letter-spacing: .06rem;
+  text-transform: uppercase;
+}
+.dress-intro {
+  text-align: center;
+  margin: 0 auto 1.25rem auto;
+  max-width: 780px;
+  color:#3d4a46;
+  line-height: 1.9;
+}
+.dress-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s ease .1s, transform .8s ease .1s;
+}
+.dress-image { width: min(380px, 70vw); margin: .5rem auto 0; filter: drop-shadow(0 8px 18px rgba(44,62,58,.15)); }
+.dress-subtitle {
+  margin-top: .5rem;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 600;
+  color:#2f3b37;
+  letter-spacing: .04rem;
+}
+.dress-style { color:#3d4a46; }
+.dress-style b { font-weight: 700; color:#2f3b37; }
+.dress-note { color:#2f3b37; font-weight: 600; margin-top: .25rem; }
+
+.dress-dots { display: flex; justify-content: center; gap: .5rem; margin-top: .5rem; }
+.dress-dot {
+  width: 10px; height: 10px; border-radius: 999px; border: 2px solid var(--accent-dark);
+  background: transparent; cursor: pointer; padding: 0; line-height: 0;
+}
+.dress-dot.active { background: var(--accent-dark); }
+.dress-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Reveal current slide when section is in view */
+.fade-section.show .dress-slide { opacity: 1; transform: none; }
+
 /* Footer */
 .footer {
   text-align: center;

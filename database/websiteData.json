@@ -87,6 +87,32 @@
           ]
         },
         {
+          "type": "DressCode",
+          "altStyle": false,
+          "reverse": false,
+          "title": "Vestimenta",
+          "paragraphs": [
+            "En este día tan especial lo más valioso es tu compañía, luce tu mejor atuendo y disfruta con nosotros."
+          ],
+          "dressSuggestions": [
+            {
+              "image": "images/dress-women.png",
+              "imageAlt": "Mujer con vestido",
+              "title": "Mujeres",
+              "styleLabel": "Formal",
+              "description": "Como te sientas cómoda y elegante.",
+              "note": "Favor de reservar el color azul"
+            },
+            {
+              "image": "images/dress-men.png",
+              "imageAlt": "Traje de hombre",
+              "title": "Hombres",
+              "styleLabel": "Formal",
+              "description": "Queremos verte con la pinta más elegante."
+            }
+          ]
+        },
+        {
           "altStyle": false,
           "reverse": false,
           "image": "images/IMG_3672.jpg",
