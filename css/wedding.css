@@ -34,13 +34,15 @@
 /* Sections */
 .fade-section {
   position: relative;
-  padding: 4rem 1rem;
+  /* Slightly larger vertical rhythm */
+  padding: 5rem 1.25rem;
   background: #ffffff;
 }
 .fade-section.alt { background:#f3f8f6; }
 
 .section-inner {
-  max-width: 1100px;
+  /* Slightly wider content area */
+  max-width: 1200px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -72,7 +74,8 @@
 .section-text h4,
 .section-text .mud-typography-h4 {
   margin: 0 0 .75rem 0;
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  /* Slightly larger headings */
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
   font-family: "Cormorant Garamond", "Georgia", serif;
   color:#2f3b37;
   letter-spacing: .06rem;
@@ -114,10 +117,25 @@
 }
 
 /* Events list section */
-.events-section { max-width: 1100px; margin: 0 auto; }
-.events-title { margin: 0 0 1rem 0; text-align: left; }
+.events-section { max-width: 1200px; margin: 0 auto; }
+.events-title {
+  margin: 0 0 1rem 0;
+  text-align: left;
+  /* Match standard section title styling */
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  color:#2f3b37;
+  letter-spacing: .06rem;
+  text-transform: uppercase;
+}
 .events-list { display: flex; flex-direction: column; gap: 1.5rem; }
-.event-item { display: grid; grid-template-columns: 220px 1fr; gap: 1rem; align-items: start; }
+.event-item {
+  display: grid; grid-template-columns: 260px 1fr; gap: 1rem; align-items: start;
+  /* Fade-in consistency with other sections */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s ease .1s, transform .8s ease .1s;
+}
 .event-image { width: 100%; border-radius: 10px; box-shadow: 0 8px 22px rgba(44,62,58,.16); }
 .event-title { font-weight: 600; }
 .event-address, .event-datetime { color:#5b6a66; }
@@ -128,6 +146,8 @@
 
 .fade-section.show .section-image,
 .fade-section.show .section-text { opacity: 1; transform: none; }
+/* Reveal events when section is in view */
+.fade-section.show .event-item { opacity: 1; transform: none; }
 
 /* Footer */
 .footer {
