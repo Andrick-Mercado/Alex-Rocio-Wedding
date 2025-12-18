@@ -40,6 +40,165 @@
 }
 .fade-section.alt { background:#f3f8f6; }
 
+/* RSVP section: visually like a section but not counted as .fade-section
+   so tests that rely on .fade-section remain unchanged. */
+.rsvp-section {
+  position: relative;
+  padding: 5rem 1.25rem;
+  background: #ffffff;
+}
+/* Ensure inner content is visible (regular sections fade-in via .fade-section.show) */
+.rsvp-section .section-text { opacity: 1; transform: none; }
+/* Use single-column flow inside RSVP for simple form layout */
+.rsvp-section .section-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  z-index: 1; /* above overlay */
+}
+/* Small spacing tweaks for the form controls */
+.rsvp-section .form-field label { display: inline-block; margin-bottom: .25rem; }
+/* Inputs styling to match screenshot (soft, rounded, light bg) */
+.rsvp-section input[type="text"],
+.rsvp-section input[type="email"],
+.rsvp-section input[type="number"],
+.rsvp-section select,
+.rsvp-section textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: .9rem 1rem;
+  border: 1px solid rgba(214,228,224,.6);
+  border-radius: 10px;
+  background: rgba(250, 253, 252, .95);
+  box-shadow: 0 4px 14px rgba(0,0,0,.06);
+  font-family: inherit;
+  color: #2f3b37;
+}
+.rsvp-section select { appearance: none; -webkit-appearance: none; -moz-appearance: none; background-image: none; }
+.rsvp-section textarea { resize: vertical; }
+.rsvp-section input::placeholder,
+.rsvp-section textarea::placeholder { color: #7b8a86; }
+.rsvp-section input:focus,
+.rsvp-section textarea:focus,
+.rsvp-section select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(120,183,173,.25);
+}
+/* Align reCAPTCHA nicely */
+.rsvp-section .g-recaptcha {
+  transform: scale(1);
+  transform-origin: left top;
+  display: block;
+  margin: .25rem 0 .9rem 0; /* give breathing room above the submit button */
+  position: relative;
+  z-index: 2; /* ensure it's above the dark overlay */
+}
+
+/* Clear, visible submit/validation message under the button */
+.rsvp-message {
+  position: relative;
+  z-index: 2;
+  display: block;
+  text-align: center;
+  margin: .75rem auto 0;
+  max-width: 640px;
+  padding: .6rem .9rem;
+  border-radius: 10px;
+  background: rgba(0,0,0,.6); /* stronger contrast behind text */
+  color: #ffffff; /* readable on darkened photo */
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .01em;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  backdrop-filter: blur(1.5px);
+  text-shadow: 0 1px 6px rgba(0,0,0,.35);
+}
+
+/* Ensure MudBlazor color utilities don't reduce contrast */
+.rsvp-message.mud-success-text,
+.rsvp-message.mud-error-text,
+.rsvp-message { color: #ffffff !important; }
+
+/* Background image + overlay */
+.rsvp-section.with-bg {
+  background-size: cover;
+  background-position: center;
+}
+.rsvp-section.with-bg::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.45);
+}
+
+/* Title styled like screenshot */
+.rsvp-title {
+  font-family: "Great Vibes", "Times New Roman", serif;
+  color: #ffffff;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  text-align: center;
+  margin: 0 auto 1rem auto;
+  padding: .5rem 1.25rem;
+  background: rgba(255,255,255,.18);
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.18);
+  width: fit-content;
+}
+.rsvp-subtitle {
+  color: #eef6f3;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+/* Grid for form fields */
+.rsvp-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+}
+.rsvp-form-grid .full { grid-column: 1 / -1; }
+
+.rsvp-actions {
+  display: flex;
+  align-items: center;
+  /* Center the submit button to make it more prominent */
+  justify-content: center;
+  gap: 1rem;
+}
+.rsvp-actions .mud-button { padding: 1rem 1.6rem; }
+
+/* Make the submit button stand out over the darkened background */
+.rsvp-section .mud-button {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  box-shadow: 0 10px 24px rgba(0,0,0,.22);
+}
+.rsvp-section .mud-button:hover {
+  background: #5aa197 !important; /* slightly darker accent */
+  box-shadow: 0 12px 28px rgba(0,0,0,.26);
+}
+.rsvp-section .mud-button:focus-visible {
+  outline: 3px solid rgba(120,183,173,.45);
+  outline-offset: 3px;
+}
+.rsvp-section .mud-button:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (max-width: 800px) {
+  .rsvp-form-grid { grid-template-columns: 1fr; }
+  .rsvp-actions { flex-direction: column; align-items: stretch; }
+  .rsvp-actions .mud-button { width: 100%; }
+}
+
 .section-inner {
   /* Slightly wider content area */
   max-width: 1200px;
@@ -216,7 +375,20 @@
   text-align: center;
   padding: 3rem 1rem 4rem;
   background: linear-gradient(180deg, #ffffff 0%, #f1f7f5 100%);
-  color: #2f3b37;
+  color: #1e2a27; /* darker for stronger contrast */
+}
+
+/* Make the bottom text more visible */
+.footer .mud-typography,
+.footer .mud-typography-body1 {
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+/* Ensure footer icons remain visible and consistent with the accent */
+.footer .mud-icon-button {
+  color: var(--accent-dark);
 }
 
 /* Accent color utilities matching seafoam/teal mood */

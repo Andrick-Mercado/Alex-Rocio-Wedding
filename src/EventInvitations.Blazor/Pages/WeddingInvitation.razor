@@ -1,14 +1,16 @@
-
 @using PersonalPortfolio.Library.Domain
-@using Microsoft.JSInterop
-@using System.Linq
-@implements IDisposable
 @using PersonalPortfolio.Library.Domain.Mappers
-@inject Library.Infrastructure.IWebsiteRepo WebsiteRepo
+@using PersonalPortfolio.Library.Infrastructure
+@using System.ComponentModel.DataAnnotations
+@using System.Net.Http.Headers
+@using System.Timers
+@implements IDisposable
+@inject IWebsiteRepo WebsiteRepo
 @inject IJSRuntime JS
+@inject HttpClient Http
 
 <MudPaper Elevation="0">
-    <div class="hero" style="@HeroStyle">
+    <div class="hero" @attributes="HeroAttributes">
         <canvas id="snow-canvas"></canvas>
         <MudContainer Class="hero-content" MaxWidth="MaxWidth.False">
             <MudText Typo="Typo.h1" Class="couple">@(_wedding?.CoupleNames)</MudText>
@@ -192,6 +194,67 @@
     }
 }
 
+<!-- RSVP Section (Formspree + hCaptcha) -->
+<MudPaper Class="@($"rsvp-section{(string.IsNullOrWhiteSpace(_wedding?.HeroBackgroundImage) ? string.Empty : " with-bg")}")" Elevation="0" @attributes="RsvpAttributes">
+    <MudContainer Class="section-inner" MaxWidth="MaxWidth.False">
+        <div class="section-text">
+            <div class="rsvp-title">Confirma tu asistencia</div>
+            @if (string.IsNullOrWhiteSpace(_wedding?.DateText) is false)
+            {
+                <div class="rsvp-subtitle">Por favor, reserva antes de @_wedding.DateText.</div>
+            }
+
+            <EditForm Model="_rsvp" OnValidSubmit="SubmitRsvpAsync">
+                <DataAnnotationsValidator />
+
+                <div class="rsvp-form-grid">
+                    <div class="form-field">
+                        <input id="name" type="text" placeholder="Tu nombre" @bind="_rsvp.Name" />
+                    </div>
+
+                    <div class="form-field">
+                        <input id="email" type="email" placeholder="Tu email*" @bind="_rsvp.Email" required />
+                    </div>
+
+                    <div class="form-field">
+                        <input id="guests" type="number" min="1" max="10" placeholder="Número de invitados" @bind="_rsvp.Guests" disabled="@(!_rsvp.IsAttending)" />
+                    </div>
+
+                    <div class="form-field">
+                        <InputSelect @bind-Value="_rsvp.IsAttending" id="attending">
+                            <option value="true">Asistiré *</option>
+                            <option value="false">No podré asistir *</option>
+                        </InputSelect>
+                    </div>
+
+                    <div class="form-field full">
+                        <textarea id="message" rows="6" placeholder="Tu mensaje" @bind="_rsvp.Message"></textarea>
+                    </div>
+
+                    @if (CaptchaEnabled)
+                    {
+                        <div class="form-field full">
+                            <!-- Google reCAPTCHA v2 widget -->
+                            <div class="g-recaptcha" data-sitekey="@RecaptchaSiteKey"></div>
+                        </div>
+                    }
+
+                    <div class="rsvp-actions full">
+                        <button type="submit" class="mud-button mud-button-filled mud-button-filled-primary" disabled="@_submitting">
+                            @(_submitting ? "Enviando..." : "Enviar invitación")
+                        </button>
+                    </div>
+                </div>
+            </EditForm>
+
+            @if (string.IsNullOrWhiteSpace(_submitMessage) is false)
+            {
+                <MudText Typo="Typo.body2" Color="@(_submitSuccess ? Color.Success : Color.Error)" Class="rsvp-message mt-2">@_submitMessage</MudText>
+            }
+        </div>
+    </MudContainer>
+</MudPaper>
+
 <MudPaper Class="footer" Elevation="0">
     <MudText Align="Align.Center">@(_wedding?.FooterText)</MudText>
 
@@ -207,9 +270,20 @@
 
 @code {
     private PersonalInformation _personalInformation;
-    private PersonalPortfolio.Library.Domain.WeddingInvitation _wedding;
+    private Library.Domain.WeddingInvitation _wedding;
+    private const string FormspreeEndpoint = "https://formspree.io/f/meoybpvz";
+    private string RecaptchaSiteKey = string.Empty;
+    private bool CaptchaEnabled => string.IsNullOrWhiteSpace(RecaptchaSiteKey) == false;
     private string HeroStyle => string.IsNullOrWhiteSpace(_wedding?.HeroBackgroundImage) ? string.Empty : $"background-image:url('{_wedding.HeroBackgroundImage}');";
-    private System.Timers.Timer _countdownTimer;
+    private IReadOnlyDictionary<string, object> HeroAttributes =>
+        string.IsNullOrWhiteSpace(_wedding?.HeroBackgroundImage)
+            ? new Dictionary<string, object>()
+            : new Dictionary<string, object> { ["style"] = $"background-image:url('{_wedding.HeroBackgroundImage}');" };
+    private IReadOnlyDictionary<string, object> RsvpAttributes =>
+        string.IsNullOrWhiteSpace(_wedding?.HeroBackgroundImage)
+            ? new Dictionary<string, object>()
+            : new Dictionary<string, object> { ["style"] = $"background-image:url('{_wedding.HeroBackgroundImage}');" };
+    private Timer _countdownTimer;
     private int _dressIndex = 0;
     private ElementReference _dressContainer;
     private DotNetObjectReference<object> _dotNetRef;
@@ -225,7 +299,7 @@
         // If there is at least one countdown section, start a 1s timer to update the UI
         if (_wedding?.Sections?.Any(s => s.Type == WeddingSectionType.Countdown) == true)
         {
-            _countdownTimer = new System.Timers.Timer(1000);
+            _countdownTimer = new Timer(1000);
             _countdownTimer.Elapsed += (_, _) => InvokeAsync(StateHasChanged);
             _countdownTimer.AutoReset = true;
             _countdownTimer.Start();
@@ -244,6 +318,27 @@
                 await JS.InvokeVoidAsync("dressSwipe.init", _dressContainer, _dotNetRef);
             }
             catch { /* no-op if element not found */ }
+            // Detect reCAPTCHA site key and render widget
+            try
+            {
+                RecaptchaSiteKey = await JS.InvokeAsync<string>("rsvpForm.getRecaptchaSiteKey");
+                if (string.IsNullOrWhiteSpace(RecaptchaSiteKey) == false)
+                {
+                    await JS.InvokeVoidAsync("rsvpForm.renderRecaptcha");
+                    StateHasChanged();
+                }
+            }
+            catch { /* ignore if not configured */ }
+        }
+
+        // Attempt to render captcha on every render while enabled to cover script/DOM races.
+        if (CaptchaEnabled)
+        {
+            try
+            {
+                await JS.InvokeVoidAsync("rsvpForm.renderRecaptcha");
+            }
+            catch { /* no-op */ }
         }
     }
 
@@ -307,7 +402,7 @@
         StateHasChanged();
     }
 
-    [Microsoft.JSInterop.JSInvokable]
+    [JSInvokable]
     public Task OnDressSwipe(string direction)
     {
         if (string.Equals(direction, "left", StringComparison.OrdinalIgnoreCase))
@@ -316,4 +411,108 @@
             PrevDress();
         return Task.CompletedTask;
     }
+
+    private RsvpModel _rsvp = new();
+    private bool _submitting;
+    private bool _submitSuccess;
+    private string _submitMessage = string.Empty;
+
+    private string EmailValidator(string value)
+        => string.IsNullOrWhiteSpace(value) || !new EmailAddressAttribute().IsValid(value)
+            ? "Ingresa un email válido"
+            : null;
+
+    private async Task SubmitRsvpAsync()
+    {
+        _submitting = true;
+        _submitMessage = string.Empty;
+        _submitSuccess = false;
+        StateHasChanged();
+
+        try
+        {
+            if (string.IsNullOrWhiteSpace(_rsvp.Email))
+            {
+                _submitMessage = "El email es obligatorio.";
+                _submitSuccess = false;
+                return;
+            }
+
+            string captchaToken = null;
+            if (CaptchaEnabled)
+            {
+                try
+                {
+                    captchaToken = await JS.InvokeAsync<string>("rsvpForm.getRecaptchaToken");
+                }
+                catch { /* ignore */ }
+
+                if (string.IsNullOrWhiteSpace(captchaToken))
+                {
+                    _submitMessage = "Por favor, completa el captcha.";
+                    _submitSuccess = false;
+                    return;
+                }
+            }
+
+            var payload = new Dictionary<string, object>
+            {
+                ["name"] = _rsvp.Name ?? string.Empty,
+                ["isAttending"] = _rsvp.IsAttending,
+                ["guests"] = _rsvp.IsAttending ? Math.Max(1, _rsvp.Guests) : 0,
+                ["email"] = _rsvp.Email,
+                ["message"] = _rsvp.Message ?? string.Empty
+            };
+
+            if (CaptchaEnabled && string.IsNullOrWhiteSpace(captchaToken) is false)
+            {
+                payload["g-recaptcha-response"] = captchaToken;
+            }
+
+            var req = new HttpRequestMessage(HttpMethod.Post, FormspreeEndpoint)
+            {
+                Content = JsonContent.Create(payload)
+            };
+            req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var resp = await Http.SendAsync(req);
+            if (resp.IsSuccessStatusCode)
+            {
+                _submitSuccess = true;
+                _submitMessage = "¡Gracias! Tu respuesta ha sido enviada.";
+                _rsvp = new RsvpModel();
+                if (CaptchaEnabled)
+                {
+                    try { await JS.InvokeVoidAsync("rsvpForm.resetRecaptcha"); } catch { /* ignore */ }
+                }
+
+            }
+            else
+            {
+                var responseBody = await resp.Content.ReadAsStringAsync();
+                _submitSuccess = false;
+                _submitMessage = "No se pudo enviar. Intenta nuevamente más tarde.";
+            }
+        }
+        catch
+        {
+            _submitSuccess = false;
+            _submitMessage = "Ocurrió un error. Intenta nuevamente.";
+        }
+        finally
+        {
+            _submitting = false;
+        }
+    }
+
+    public class RsvpModel
+    {
+        public string Name { get; set; } = string.Empty;
+        public bool IsAttending { get; set; } = true;
+        public int Guests { get; set; } = 1;
+        public string Email { get; set; } = string.Empty;
+        public string Message { get; set; }
+    }
+
+    // CaptchaProvider removed – site uses only Google reCAPTCHA v2
 }
