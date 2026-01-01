@@ -95,7 +95,7 @@
                                 }
                                 @if (string.IsNullOrWhiteSpace(ev.LocationUrl) is false)
                                 {
-                                    <MudLink Href="@ev.LocationUrl" Class="event-link">@(string.IsNullOrWhiteSpace(ev.LocationLinkText) ? "Ver ubicación ›" : ev.LocationLinkText)</MudLink>
+                                    <MudLink Href="@ev.LocationUrl" Target="_blank" Class="event-link">@(string.IsNullOrWhiteSpace(ev.LocationLinkText) ? "Ver ubicación ›" : ev.LocationLinkText)</MudLink>
                                 }
                             </div>
                         </div>

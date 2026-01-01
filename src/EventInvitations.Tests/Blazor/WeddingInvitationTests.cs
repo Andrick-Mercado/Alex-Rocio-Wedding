@@ -137,4 +137,32 @@ public class WeddingInvitationTests : BunitContext
         var hero = cut.Find(".hero");
         hero.GetAttribute("style")?.Should().NotContain("background-image");
     }
+
+    [Fact]
+    public void Renders_Events_Section_With_Target_Blank_On_Links()
+    {
+        // Arrange
+        var data = BuildWebsiteData();
+        data.WeddingInvitation.Sections.Add(new WeddingSection
+        {
+            Type = WeddingSectionType.Events,
+            Title = "Events",
+            Events = new()
+            {
+                new WeddingEvent
+                {
+                    Title = "Ceremony",
+                    LocationUrl = "https://maps.google.com"
+                }
+            }
+        });
+        RegisterCommonServices(data);
+
+        // Act
+        var cut = Render<PersonalPortfolio.Blazor.Pages.WeddingInvitation>();
+
+        // Assert
+        var link = cut.Find(".event-link");
+        link.GetAttribute("target").Should().Be("_blank");
+    }
 }
