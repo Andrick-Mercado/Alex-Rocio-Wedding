@@ -65,23 +65,33 @@
           "title": "Eventos",
           "events": [
             {
-              "image": "images/reception.jpg",
-              "imageAlt": "Recepción",
-              "title": "Recepción",
+              "image": "images/ring-wedding.jpg",
+              "imageAlt": "Hora de Ceremonia",
+              "title": "Hora de Ceremonia",
               "address": "Huatulco, Oaxaca",
               "dateTimeText": "18 Abr 2026, 5:00 PM – 6:00 PM",
-              "description": "Ceremonia y recepción para celebrar nuestro amor.",
-              "locationUrl": "https://maps.google.com",
+              "description": "Ceremonia de boda en la playa para celebrar nuestro amor rodeados de familiares y amigos.",
+              "locationUrl": "https://maps.app.goo.gl/VUhU2w4sHbo1mtMe8",
               "locationLinkText": "Ver ubicación ›"
             },
             {
               "image": "images/party.jpg",
-              "imageAlt": "Fiesta",
-              "title": "Fiesta",
+              "imageAlt": "Hora de Fiesta",
+              "title": "Hora de Fiesta",
               "address": "Huatulco, Oaxaca",
               "dateTimeText": "18 Abr 2026, 6:00 PM – 12:00 AM",
-              "description": "¡Música y baile para todos nuestras personas favoritas!",
-              "locationUrl": "https://maps.google.com",
+              "description": "Después de la ceremonia, acompáñanos a una noche llena de alegría, música y baile.",
+              "locationUrl": "https://maps.app.goo.gl/VUhU2w4sHbo1mtMe8",
+              "locationLinkText": "Ver ubicación ›"
+            },
+            {
+              "image": "images/reception.jpg",
+              "imageAlt": "Hora de Comida",
+              "title": "Hora de Comida",
+              "address": "Huatulco, Oaxaca",
+              "dateTimeText": "18 Abr 2026, 7:00 PM – 8:00 PM",
+              "description": "Disfruta de una deliciosa cena preparada especialmente para nuestros invitados.",
+              "locationUrl": "https://maps.app.goo.gl/VUhU2w4sHbo1mtMe8",
               "locationLinkText": "Ver ubicación ›"
             }
           ]
@@ -100,15 +110,16 @@
               "imageAlt": "Mujer con vestido",
               "title": "Mujeres",
               "styleLabel": "Formal",
-              "description": "Como te sientas cómoda y elegante.",
-              "note": "Favor de reservar el color azul"
+              "description": "Ropa para boda en la playa",
+              "note": "Favor de reservar colores blanco, rosa y fucsia."
             },
             {
               "image": "images/dress-men.png",
               "imageAlt": "Traje de hombre",
               "title": "Hombres",
               "styleLabel": "Formal",
-              "description": "Queremos verte con la pinta más elegante."
+              "description": "Ropa para boda en la playa",
+              "note": "Favor de reservar colores blanco, rosa y fucsia."
             }
           ]
         }
