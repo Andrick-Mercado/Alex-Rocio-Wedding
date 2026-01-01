@@ -167,4 +167,26 @@ public class WeddingInvitationTests : BunitContext
         var link = cut.Find(".event-link");
         link.GetAttribute("target").Should().Be("_blank");
     }
+
+    [Fact]
+    public void Renders_DressCode_Section_With_Note()
+    {
+        // Arrange
+        var data = BuildWebsiteData();
+        data.WeddingInvitation.Sections.Add(new WeddingSection
+        {
+            Type = WeddingSectionType.DressCode,
+            Title = "Vestimenta",
+            Image = "dress.png",
+            FooterText = "Favor de reservar colores blanco, rosa y fucsia."
+        });
+        RegisterCommonServices(data);
+
+        // Act
+        var cut = Render<PersonalPortfolio.Blazor.Pages.WeddingInvitation>();
+
+        // Assert
+        var dressNote = cut.Find(".dress-note");
+        dressNote.TextContent.Should().Be("Favor de reservar colores blanco, rosa y fucsia.");
+    }
 }

@@ -106,11 +106,6 @@
     }
     else if (sec.Type == WeddingSectionType.DressCode)
     {
-        // Dress code section with a simple two-slide toggle (e.g., Mujeres / Hombres)
-        var slides = sec.DressSuggestions ?? new List<DressSuggestion>();
-        var current = (slides.Count > 0)
-            ? slides.ElementAtOrDefault(Math.Clamp(_dressIndex, 0, slides.Count - 1)) ?? slides[0]
-            : null;
         <MudPaper Class="@(sec.AltStyle ? "fade-section alt" : "fade-section")" Elevation="0">
             <MudContainer Class="dresscode-section" MaxWidth="MaxWidth.False">
                 @if (string.IsNullOrWhiteSpace(sec.Title) is false)
@@ -127,37 +122,16 @@
                     </div>
                 }
 
-                @if (current is not null)
-                {
-                    <div class="dresscode-touch" @ref="_dressContainer">
-                        <div class="dress-slide">
-                            @if (string.IsNullOrWhiteSpace(current.Image) is false)
-                            {
-                                <MudImage Src="@current.Image" Alt="@current.ImageAlt" Class="dress-image" loading="lazy" />
-                            }
-                            <MudText Typo="Typo.h6" Class="dress-subtitle">@current.Title</MudText>
-                            @if (string.IsNullOrWhiteSpace(current.StyleLabel) is false || string.IsNullOrWhiteSpace(current.Description) is false)
-                            {
-                                <MudText Typo="Typo.body1" Class="dress-style">
-                                    <b>@(string.IsNullOrWhiteSpace(current.StyleLabel) ? string.Empty : current.StyleLabel + " - ")</b>@current.Description
-                                </MudText>
-                            }
-                            @if (string.IsNullOrWhiteSpace(current.Note) is false)
-                            {
-                                <MudText Typo="Typo.body2" Class="dress-note">@current.Note</MudText>
-                            }
-                        </div>
-                        <div class="dress-dots">
-                            @for (var i = 0; i < slides.Count; i++)
-                            {
-                                // Capture loop variable to avoid closure issue where all handlers use the last value
-                                var idx = i;
-                                var active = idx == _dressIndex;
-                                <button type="button" class="dress-dot @(active ? "active" : string.Empty)" @onclick="(() => SetDressIndex(idx))" aria-label="Cambiar a @(slides[idx]?.Title)"></button>
-                            }
-                        </div>
-                    </div>
-                }
+                <div class="dress-slide">
+                    @if (string.IsNullOrWhiteSpace(sec.Image) is false)
+                    {
+                        <MudImage Src="@sec.Image" Alt="@sec.ImageAlt" Class="dress-image" loading="lazy" />
+                    }
+                    @if (string.IsNullOrWhiteSpace(sec.FooterText) is false)
+                    {
+                        <MudText Typo="Typo.body1" Class="dress-note"><b>@sec.FooterText</b></MudText>
+                    }
+                </div>
             </MudContainer>
         </MudPaper>
     }
@@ -275,9 +249,6 @@
             ? new Dictionary<string, object>()
             : new Dictionary<string, object> { ["style"] = $"background-image:url('{_wedding.HeroBackgroundImage}');" };
     private Timer _countdownTimer;
-    private int _dressIndex = 0;
-    private ElementReference _dressContainer;
-    private DotNetObjectReference<object> _dotNetRef;
 
     protected override async Task OnInitializedAsync()
     {
@@ -304,12 +275,6 @@
             await JS.InvokeVoidAsync("weddingSnow.init");
             await JS.InvokeVoidAsync("scrollFade.init");
             await JS.InvokeVoidAsync("backgroundMusic.init", "music/wedding-background-music.mp3");
-            _dotNetRef = DotNetObjectReference.Create<object>(this);
-            try
-            {
-                await JS.InvokeVoidAsync("dressSwipe.init", _dressContainer, _dotNetRef);
-            }
-            catch { /* no-op if element not found */ }
         }
     }
 
@@ -342,45 +307,6 @@
     {
         _countdownTimer?.Stop();
         _countdownTimer?.Dispose();
-        try
-        {
-            JS?.InvokeVoidAsync("dressSwipe.dispose", _dressContainer);
-        }
-        catch { /* ignore dispose JS errors */ }
-        _dotNetRef?.Dispose();
-    }
-
-    private void SetDressIndex(int index)
-    {
-        var total = _wedding?.Sections?.FirstOrDefault(s => s.Type == WeddingSectionType.DressCode)?.DressSuggestions?.Count ?? 0;
-        if (total <= 0) return;
-        _dressIndex = Math.Clamp(index, 0, total - 1);
-    }
-
-    private void NextDress()
-    {
-        var total = _wedding?.Sections?.FirstOrDefault(s => s.Type == WeddingSectionType.DressCode)?.DressSuggestions?.Count ?? 0;
-        if (total <= 0) return;
-        _dressIndex = (_dressIndex + 1) % total;
-        StateHasChanged();
-    }
-
-    private void PrevDress()
-    {
-        var total = _wedding?.Sections?.FirstOrDefault(s => s.Type == WeddingSectionType.DressCode)?.DressSuggestions?.Count ?? 0;
-        if (total <= 0) return;
-        _dressIndex = (_dressIndex - 1 + total) % total;
-        StateHasChanged();
-    }
-
-    [JSInvokable]
-    public Task OnDressSwipe(string direction)
-    {
-        if (string.Equals(direction, "left", StringComparison.OrdinalIgnoreCase))
-            NextDress();
-        else if (string.Equals(direction, "right", StringComparison.OrdinalIgnoreCase))
-            PrevDress();
-        return Task.CompletedTask;
     }
 
     private RsvpModel _rsvp = new();

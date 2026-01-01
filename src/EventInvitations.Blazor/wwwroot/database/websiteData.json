@@ -101,27 +101,12 @@
           "altStyle": false,
           "reverse": false,
           "title": "Vestimenta",
+          "image": "images/dress-both-aigen.png",
+          "imageAlt": "Dress Code",
           "paragraphs": [
             "En este día tan especial lo más valioso es tu compañía, luce tu mejor atuendo y disfruta con nosotros."
           ],
-          "dressSuggestions": [
-            {
-              "image": "images/women-attire-aigen.png",
-              "imageAlt": "Mujer con vestido",
-              "title": "Mujeres",
-              "styleLabel": "Formal",
-              "description": "Ropa para boda en la playa",
-              "note": "Favor de reservar colores blanco, rosa y fucsia."
-            },
-            {
-              "image": "images/men-attire-aigen.png",
-              "imageAlt": "Traje de hombre",
-              "title": "Hombres",
-              "styleLabel": "Formal",
-              "description": "Ropa para boda en la playa",
-              "note": "Favor de reservar colores blanco, rosa y fucsia."
-            }
-          ]
+          "footerText": "Favor de reservar colores blanco, rosa y fucsia."
         }
       ],
       "footerText": "Con cariño, A & R • 2026"
