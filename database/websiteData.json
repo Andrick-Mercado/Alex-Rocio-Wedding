@@ -69,7 +69,7 @@
               "imageAlt": "Hora de Ceremonia",
               "title": "Hora de Ceremonia",
               "address": "Huatulco, Oaxaca",
-              "dateTimeText": "18 Abr 2026, 5:00 PM – 6:00 PM",
+              "dateTimeText": "5:00 PM – 6:00 PM",
               "description": "Ceremonia de boda en la playa para celebrar nuestro amor rodeados de familiares y amigos.",
               "locationUrl": "https://maps.app.goo.gl/VUhU2w4sHbo1mtMe8",
               "locationLinkText": "Ver ubicación ›"
@@ -79,7 +79,7 @@
               "imageAlt": "Hora de Fiesta",
               "title": "Hora de Fiesta",
               "address": "Huatulco, Oaxaca",
-              "dateTimeText": "18 Abr 2026, 6:00 PM – 12:00 AM",
+              "dateTimeText": "6:00 PM – 12:00 AM",
               "description": "Después de la ceremonia, acompáñanos a una noche llena de alegría, música y baile.",
               "locationUrl": "https://maps.app.goo.gl/VUhU2w4sHbo1mtMe8",
               "locationLinkText": "Ver ubicación ›"
@@ -89,7 +89,7 @@
               "imageAlt": "Hora de Comida",
               "title": "Hora de Comida",
               "address": "Huatulco, Oaxaca",
-              "dateTimeText": "18 Abr 2026, 7:00 PM – 8:00 PM",
+              "dateTimeText": "7:00 PM – 8:00 PM",
               "description": "Disfruta de una deliciosa cena preparada especialmente para nuestros invitados.",
               "locationUrl": "https://maps.app.goo.gl/VUhU2w4sHbo1mtMe8",
               "locationLinkText": "Ver ubicación ›"
@@ -106,7 +106,7 @@
           ],
           "dressSuggestions": [
             {
-              "image": "images/dress-women.png",
+              "image": "images/women-attire-aigen.png",
               "imageAlt": "Mujer con vestido",
               "title": "Mujeres",
               "styleLabel": "Formal",
@@ -114,7 +114,7 @@
               "note": "Favor de reservar colores blanco, rosa y fucsia."
             },
             {
-              "image": "images/dress-men.png",
+              "image": "images/men-attire-aigen.png",
               "imageAlt": "Traje de hombre",
               "title": "Hombres",
               "styleLabel": "Formal",
