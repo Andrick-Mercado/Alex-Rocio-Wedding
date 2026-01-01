@@ -36,7 +36,7 @@
   position: relative;
   /* Slightly larger vertical rhythm */
   padding: 5rem 1.25rem;
-  background: #ffffff;
+  background: transparent;
 }
 .fade-section.alt { background:#f3f8f6; }
 
@@ -45,7 +45,7 @@
 .rsvp-section {
   position: relative;
   padding: 5rem 1.25rem;
-  background: #ffffff;
+  background: transparent;
 }
 /* Ensure inner content is visible (regular sections fade-in via .fade-section.show) */
 .rsvp-section .section-text { opacity: 1; transform: none; }
@@ -326,19 +326,18 @@
   opacity: 0;
   transform: translateY(20px);
   transition: opacity .8s ease .1s, transform .8s ease .1s;
-  /* Fix for mobile blending support */
-  isolation: isolate;
-  background-color: #ffffff;
+  /* Background removed to allow the image to blend with the section background */
+  background-color: transparent;
 }
 .fade-section.alt .dress-slide {
-  background-color: #f3f8f6;
+  background-color: transparent;
 }
 .dress-image {
   width: min(380px, 70vw);
   margin: .5rem auto 0;
-  /* Use multiply and filters to hide the checkerboard squares in the image */
+  /* Use multiply to make the white background transparent */
   mix-blend-mode: multiply;
-  filter: brightness(1.25) contrast(1.1);
+  filter: brightness(1.1) contrast(1.1);
   /* Ensure proper rendering on some mobile browsers */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
