@@ -364,17 +364,18 @@
 /* Footer */
 .footer {
   text-align: center;
-  padding: 3rem 1rem 4rem;
-  background: linear-gradient(180deg, #ffffff 0%, #f1f7f5 100%);
-  color: #1e2a27; /* darker for stronger contrast */
+  padding: 4rem 1rem;
+  background-color: #f8f9fa;
+  color: #556b64;
+  border-top: 1px solid #e9ecef;
 }
 
-/* Make the bottom text more visible */
+/* Make the bottom text elegant and readable */
 .footer .mud-typography,
 .footer .mud-typography-body1 {
-  font-size: clamp(1rem, 2.2vw, 1.15rem);
-  font-weight: 600;
-  letter-spacing: .02em;
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  font-weight: 500;
+  letter-spacing: .03em;
 }
 
 /* Ensure footer icons remain visible and consistent with the accent */
