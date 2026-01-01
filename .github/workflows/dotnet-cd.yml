@@ -1,4 +1,4 @@
-name: Deploy Web App to GitHub Pages
+name: .NET CD
 
 on:
   push:
