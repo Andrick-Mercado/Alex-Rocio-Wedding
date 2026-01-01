@@ -86,15 +86,6 @@
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(120,183,173,.25);
 }
-/* Align reCAPTCHA nicely */
-.rsvp-section .g-recaptcha {
-  transform: scale(1);
-  transform-origin: left top;
-  display: block;
-  margin: .25rem 0 .9rem 0; /* give breathing room above the submit button */
-  position: relative;
-  z-index: 2; /* ensure it's above the dark overlay */
-}
 
 /* Clear, visible submit/validation message under the button */
 .rsvp-message {
