@@ -14,8 +14,8 @@
       "mail": "andrickmercado17@gmail.com",
       "twitter": null,
       "github": "andrick-mercado",
-      "facebook": "andrick",
-      "amazonWishList":"123123"
+      "facebook": "1XKRUHIUe9pCYAt",
+      "amazonWishList":null
     }
   },
   "websiteData": {
@@ -107,6 +107,18 @@
             "En este día tan especial lo más valioso es tu compañía, luce tu mejor atuendo y disfruta con nosotros."
           ],
           "footerText": "Favor de reservar colores blanco, rosa y fucsia."
+        },
+        {
+          "type": "Gifts",
+          "altStyle": false,
+          "reverse": false,
+          "title": "Mesa de Regalos",
+          "image": "images/IMG_1511.JPEG",
+          "paragraphs": [
+            "EL CONTAR CON TU PRESENCIA ES LO MÁS IMPORTANTE PARA NOSOTROS.",
+            "TODO LO QUE SALGA DE SUS CORAZONES, SERÁ RECIBIDO EN EL NUESTRO!",
+            "TU PRESENCIA ES NUESTRO MEJOR REGALO, SI DESEAS LLEVAR UN PRESENTE, TENDREMOS UN BUZÓN PARA LA LLUVIA DE SOBRES."
+          ]
         }
       ],
       "footerText": "Con cariño, A & R • 2026"

@@ -135,6 +135,61 @@
             </MudContainer>
         </MudPaper>
     }
+    else if (sec.Type == WeddingSectionType.Gifts)
+    {
+        <MudPaper Class="@(sec.AltStyle ? "fade-section alt gifts-bg" : "fade-section gifts-bg")"
+                  @attributes="GetSectionAttributes(sec)"
+                  Elevation="0">
+            @if (!string.IsNullOrWhiteSpace(sec.Image))
+            {
+                <div class="section-overlay"></div>
+            }
+            <MudContainer Class="gifts-section" MaxWidth="MaxWidth.False">
+                @if (string.IsNullOrWhiteSpace(sec.Title) is false)
+                {
+                    <MudText Typo="Typo.h4" Class="gifts-title">@sec.Title</MudText>
+                }
+
+                <div class="gifts-box">
+                    <div class="gifts-divider-top">
+                        <div class="line"></div>
+                        <MudIcon Icon="@Icons.Material.Outlined.CardGiftcard" Class="gifts-icon-top" />
+                        <div class="line"></div>
+                    </div>
+
+                    <div class="gifts-body">
+                        @if (sec.Paragraphs != null && sec.Paragraphs.Count > 0)
+                        {
+                            <MudText Typo="Typo.body1" Class="gifts-text primary-text">@sec.Paragraphs[0]</MudText>
+                        }
+
+                        @if (sec.Paragraphs != null && sec.Paragraphs.Count > 1)
+                        {
+                            <MudText Typo="Typo.body1" Class="gifts-text secondary-text">@sec.Paragraphs[1]</MudText>
+                        }
+
+                        <div class="gifts-divider-line"></div>
+                        <MudText Typo="Typo.h5" Class="gifts-subtitle">LLUVIA DE SOBRES</MudText>
+                        <div class="gifts-divider-line"></div>
+
+                        <div class="gifts-icon-container">
+                            <div class="gifts-icon-envelope-wrapper">
+                                <svg class="envelope-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2z"></path>
+                                    <polyline class="envelope-flap" points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+
+                        @if (sec.Paragraphs != null && sec.Paragraphs.Count > 2)
+                        {
+                            <MudText Typo="Typo.body1" Class="gifts-footer-text">@sec.Paragraphs[2]</MudText>
+                        }
+                    </div>
+                </div>
+            </MudContainer>
+        </MudPaper>
+    }
     else
     {
         <MudPaper Class="@(sec.AltStyle ? "fade-section alt" : "fade-section")" Elevation="0">
@@ -248,6 +303,12 @@
         string.IsNullOrWhiteSpace(_wedding?.HeroBackgroundImage)
             ? new Dictionary<string, object>()
             : new Dictionary<string, object> { ["style"] = $"background-image:url('{_wedding.HeroBackgroundImage}');" };
+
+    private IReadOnlyDictionary<string, object> GetSectionAttributes(WeddingSection sec) =>
+        string.IsNullOrWhiteSpace(sec?.Image)
+            ? new Dictionary<string, object>()
+            : new Dictionary<string, object> { ["style"] = $"background-image:url('{sec.Image}');" };
+
     private Timer _countdownTimer;
 
     protected override async Task OnInitializedAsync()

@@ -112,7 +112,8 @@ public enum WeddingSectionType
     Standard,
     Countdown,
     Events,
-    DressCode
+    DressCode,
+    Gifts
 }
 
 public enum CardType

@@ -24,7 +24,7 @@ public static class UriMapper
 
     public static string GetFacebookUri(string username)
     {
-        return $"https://www.facebook.com/{username}";
+        return $"https://fb.me/{username}";
     }
 
     public static string GetAmazonWishlistUri(string wishListId)
