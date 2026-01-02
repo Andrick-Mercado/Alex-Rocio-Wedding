@@ -118,7 +118,21 @@
             "EL CONTAR CON TU PRESENCIA ES LO MÁS IMPORTANTE PARA NOSOTROS.",
             "TODO LO QUE SALGA DE SUS CORAZONES, SERÁ RECIBIDO EN EL NUESTRO!",
             "TU PRESENCIA ES NUESTRO MEJOR REGALO, SI DESEAS LLEVAR UN PRESENTE, TENDREMOS UN BUZÓN PARA LA LLUVIA DE SOBRES."
-          ]
+          ],
+          "showQrCode": false
+        },
+        {
+          "type": "Photos",
+          "altStyle": true,
+          "reverse": false,
+          "title": "Álbum de fotos",
+          "paragraphs": [
+            "Queremos que nos ayudes a guardar un recuerdo inolvidable de un día tan especial para nosotros.",
+            "Haz clic en el botón de abajo para añadir todas tus fotos a nuestro álbum de boda para inmortalizar cada momento."
+          ],
+          "actionUrl": "https://www.amazon.com/photos/groups/share/23bbyiueSM2hByJFYEXK9A.3igBMiDLV72PDcMwosjI1X",
+          "actionText": "Subir Fotos",
+          "showQrCode": false
         }
       ],
       "footerText": "Con cariño, A & R • 2026"
