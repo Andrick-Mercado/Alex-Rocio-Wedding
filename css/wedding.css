@@ -292,6 +292,32 @@
 .event-link { color: var(--accent-dark); font-weight: 600; }
 @media (max-width: 768px) {
   .event-item { grid-template-columns: 1fr; }
+  .section-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .section-image {
+    max-width: 90%;
+    margin: 0 auto;
+    order: 1;
+  }
+  .section-text {
+    text-align: center;
+    order: 2;
+  }
+  .footer-text,
+  .section-text .footer-text,
+  .section-inner.reverse .section-text,
+  .section-inner.reverse .section-text .footer-text,
+  .section-inner.reverse .footer-text {
+    text-align: center;
+    width: 100%;
+  }
 }
 
 .fade-section.show .section-image,
