@@ -250,20 +250,24 @@
   margin-right: 0;
   max-width: none;
 }
-/* Right-align the decorative footer/signature inside reversed blocks */
-.section-inner.reverse .section-text .footer-text,
-.section-inner.reverse .footer-text {
-  display: block;
-  text-align: right;
-}
 /* Signature line styling */
 .footer-text,
 .section-text .footer-text {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-top: .75rem;
   font-family: "Great Vibes", "Times New Roman", serif;
   font-size: clamp(1.25rem, 2.2vw, 1.75rem);
   color: #2f3b37;
+}
+
+/* Right-align the decorative footer/signature inside reversed blocks */
+.section-inner.reverse .section-text .footer-text,
+.section-inner.reverse .footer-text {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  text-align: right;
 }
 
 /* Events list section */
@@ -312,11 +316,16 @@
   }
   .footer-text,
   .section-text .footer-text,
-  .section-inner.reverse .section-text,
   .section-inner.reverse .section-text .footer-text,
   .section-inner.reverse .footer-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
     text-align: center;
     width: 100%;
+  }
+  .section-inner.reverse .section-text {
+    text-align: center;
   }
 }
 
