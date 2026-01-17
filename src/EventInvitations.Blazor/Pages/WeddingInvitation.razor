@@ -240,7 +240,18 @@
                             </MudButton>
                         </div>
                     }
-                    <MudText Typo="Typo.body2" Class="footer-text" Align="Align.Center">@(sec?.FooterText)</MudText>
+                    <MudText Typo="Typo.body2" Class="footer-text" Align="Align.Center">
+                        @if (sec.FooterText?.Contains(" — ") == true)
+                        {
+                            var parts = sec.FooterText.Split(" — ", StringSplitOptions.RemoveEmptyEntries);
+                            var name = parts.Length > 0 ? parts[0].Trim() : "";
+                            <span class="footer-dash"> — </span><span class="footer-name">@name</span>
+                        }
+                        else
+                        {
+                            @(sec?.FooterText)
+                        }
+                    </MudText>
                 </div>
             </MudContainer>
         </MudPaper>
@@ -257,7 +268,18 @@
                         {
                             <MudText Typo="Typo.body1">@p</MudText>
                         }
-                        <MudText Typo="Typo.body2" Class="footer-text">@(sec?.FooterText)</MudText>
+                        <MudText Typo="Typo.body2" Class="footer-text">
+                            @if (sec.FooterText?.Contains(" — ") == true)
+                            {
+                                var parts = sec.FooterText.Split(" — ", StringSplitOptions.RemoveEmptyEntries);
+                                var name = parts.Length > 0 ? parts[0].Trim() : "";
+                                <span class="footer-dash"> — </span><span class="footer-name">@name</span>
+                            }
+                            else
+                            {
+                                @(sec?.FooterText)
+                            }
+                        </MudText>
                     </div>
                     <MudImage Src="@sec.Image" Alt="@sec.ImageAlt" Class="section-image" loading="lazy" />
                 }
@@ -270,7 +292,18 @@
                         {
                             <MudText Typo="Typo.body1">@p</MudText>
                         }
-                        <MudText Typo="Typo.body2" Class="footer-text">@(sec?.FooterText)</MudText>
+                        <MudText Typo="Typo.body2" Class="footer-text">
+                            @if (sec.FooterText?.Contains(" — ") == true)
+                            {
+                                var parts = sec.FooterText.Split(" — ", StringSplitOptions.RemoveEmptyEntries);
+                                var name = parts.Length > 0 ? parts[0].Trim() : "";
+                                <span class="footer-dash"> — </span><span class="footer-name">@name</span>
+                            }
+                            else
+                            {
+                                @(sec?.FooterText)
+                            }
+                        </MudText>
                     </div>
                 }
             </MudContainer>
