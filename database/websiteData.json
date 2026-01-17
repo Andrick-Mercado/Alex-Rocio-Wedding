@@ -23,6 +23,7 @@
       "heroBackgroundImage": "images/IMG_4425_V3.PNG",
       "coupleNames": "Alejandro y Rocio",
       "dateText": "18 . Abril . 2026",
+      "ReservationDate": "13 de Febrero de 2026",
       "subtitle": "Nuestra Boda",
       "scrollIndicatorText": "Desliza para ver más",
       "sections": [
@@ -49,7 +50,7 @@
         {
           "altStyle": true,
           "reverse": true,
-          "image": "images/IMG_1511.JPEG",
+          "image": "images/IMG_1990.jpeg",
           "imageAlt": "Couple 1",
           "title": "La novia",
           "footerText": "Rocio — ",
