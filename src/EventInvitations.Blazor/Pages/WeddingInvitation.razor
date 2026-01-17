@@ -8,6 +8,23 @@
 @inject IWebsiteRepo WebsiteRepo
 @inject IJSRuntime JS
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<PageTitle>Wedding Invitation • @(_wedding?.CoupleNames)</PageTitle>
+
+<HeadContent>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="@NavigationManager.Uri" />
+    <meta property="og:title" content="Wedding Invitation • @(_wedding?.CoupleNames)" />
+    <meta property="og:description" content="Acompañanos a celebrar nuestra boda el @(_wedding?.DateText)." />
+    <meta property="og:image" content="@(NavigationManager.BaseUri + _wedding?.HeroBackgroundImage)" />
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="@NavigationManager.Uri" />
+    <meta property="twitter:title" content="Wedding Invitation • @(_wedding?.CoupleNames)" />
+    <meta property="twitter:description" content="Acompañanos a celebrar nuestra boda el @(_wedding?.DateText)." />
+    <meta property="twitter:image" content="@(NavigationManager.BaseUri + _wedding?.HeroBackgroundImage)" />
+</HeadContent>
 
 <MudPaper Elevation="0">
     <div class="hero" @attributes="HeroAttributes">
