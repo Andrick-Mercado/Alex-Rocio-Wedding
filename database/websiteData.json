@@ -1,7 +1,7 @@
 {
   "configurations": {
-    "websiteTheme": "Green",
-    "enableDarkMode": true
+    "websiteTheme": "GreenCyan",
+    "enableDarkMode": false
   },
   "personalInformation": {
     "person": {
@@ -10,10 +10,10 @@
       "fullName": "Andrick Mercado"
     },
     "socialMediaLinks": {
-      "linkedIn": "andrick-mercado",
-      "mail": "andrickmercado17@gmail.com",
+      "linkedIn": null,
+      "mail": null,
       "twitter": null,
-      "github": "andrick-mercado",
+      "github": null,
       "facebook": "1XKRUHIUe9pCYAt",
       "amazonWishList":null
     }
@@ -50,13 +50,13 @@
         {
           "altStyle": true,
           "reverse": true,
-          "image": "images/IMG_1990.jpeg",
+          "image": "images/IMG_2054.jpeg",
           "imageAlt": "Couple 1",
           "title": "La novia",
           "footerText": "Rocio — ",
           "paragraphs": [
-            "Comenzó con una amistad y creció hasta convertirse en una historia de amor.",
-            "Nos emociona compartir este nuevo capítulo con ustedes."
+            "Llevamos media vida juntos y queremos celebrarlo por todo lo alto con la boda mas increible que hayas estado y no queremos que faltes.",
+            "Nos llena de alegría invitarlos a ser testigo del inicio de nuestra vida juntos."
           ]
         },
         {
